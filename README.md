@@ -2,8 +2,8 @@
 
 
 ## Development Environment
-Android Studio 4.0
+- Android Studio 4.0
 
 ## Version
-Target SDK Version : 30
-Min SDK Version : 15 
+- Target SDK Version : 30
+- Min SDK Version : 15 
