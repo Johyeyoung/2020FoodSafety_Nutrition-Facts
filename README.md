@@ -6,4 +6,4 @@
 
 ## Version
 - Target SDK Version : 30
-- Min SDK Version : 15 
+- Min SDK Version : 15 (Android 4.0.3(IceCreamSandwich))
