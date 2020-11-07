@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/Main"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_search"
+        android:enabled="true"
+        android:checked="true"
+        android:title="Search" />
+    <item
+        android:id="@+id/Category"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:enabled="true"
+        android:checked="true"
+        android:title="Camera" />
+    <item
+        android:id="@+id/Location"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_call"
+        android:enabled="true"
+        android:checked="true"
+        android:title="Call" />
+    <item
+        android:id="@+id/MyInfo"
+        app:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_call"
+        android:enabled="true"
+        android:checked="true"
+        android:title="Call" />
+
+</menu>
