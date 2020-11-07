@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class CafeInfoFragment extends Fragment {
+public class FragmentCafeInfo extends Fragment {
 
     @Nullable
     @Override

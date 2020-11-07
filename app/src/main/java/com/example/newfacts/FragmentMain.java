@@ -12,8 +12,6 @@ import androidx.fragment.app.Fragment;
 
 public class FragmentMain extends Fragment{
 
-    Button btn1;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,16 +23,6 @@ public class FragmentMain extends Fragment{
 
         View view = inflater.inflate(R.layout.fragment_main, null);
 
-        // Test
-        btn1 = (Button) view.findViewById(R.id.btn1);
-
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FindCafe.class);
-                startActivity(intent);
-            }
-        });
 
         return view;
     }
