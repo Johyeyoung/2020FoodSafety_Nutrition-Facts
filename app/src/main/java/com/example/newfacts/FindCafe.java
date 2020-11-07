@@ -1,15 +1,6 @@
 package com.example.newfacts;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.loader.content.AsyncTaskLoader;
-
 import android.Manifest;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -17,26 +8,22 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.provider.ContactsContract;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -50,8 +37,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -86,6 +73,7 @@ public class FindCafe extends AppCompatActivity {
     androidx.appcompat.widget.AppCompatTextView title_bar;
 
     String url;
+    boolean isRunning = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,17 +101,6 @@ public class FindCafe extends AppCompatActivity {
         }else{
             init();
         }
-        url = "http://openapi.foodsafetykorea.go.kr/api/e740909b02604cfcb677/C004/xml/";
-        url += "1/1000/UPSO_NM=" + "유나케이크";
-        // 카페의 위생 등급 데이터에 따라 화면에 이미지 노출
-        // -> 리스트뷰에 있는 카페명을 url 요청인자로 넣어서 데이터 확인
-//        for(int i = 0; i < name_lst.size(); i++){
-//            String cafe_name = name_lst.get(i);
-//            url += "1/1000/UPSO_NM=" + cafe_name;
-//        }
-
-        OpenAPI data = new OpenAPI(url);
-        data.execute();
 
     }
 
@@ -256,7 +233,7 @@ public class FindCafe extends AppCompatActivity {
             Request.Builder builder = new Request.Builder();
 
             String site = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
-                    + "?key=AIzaSyBqsic4KX5lL9NgF2ubqk6VwPmG7h-pxHk"
+                    + "?key=AIzaSyDJ0mbhei8kzTawEdyKLL1uZLE4QPMCwUs"
                     + "&location=" + lat + "," + lng
                     + "&radius=1000"
                     + "&language=ko"
@@ -315,6 +292,7 @@ public class FindCafe extends AppCompatActivity {
                         @Override
                         public void run() {
                             float distance = 0;
+//                            GetDataThread getdatathread;
                             cafeLocation = new Location("cafe");
                             // 지도에 표시되어있는 마커 제거
                             for(Marker marker : marker_lst){
@@ -347,8 +325,18 @@ public class FindCafe extends AppCompatActivity {
                                 cafeLocation.setLatitude(lat3);
                                 cafeLocation.setLongitude(lng3);
                                 distance = currentLocation.distanceTo(cafeLocation);
-                                adapter.addItem(new MapItem(name3, String.format("%.2f", distance) + " m"));
 
+                                if (name3.length() < 20){
+                                    // 카페 인자 전달 -> 해당 카페가 위생 등급 정보가 있는지 확인
+                                    try {
+                                        adapter.addItem(new MapItem(name3, String.format("%.2f", distance) + " m", setImgColor(name3)));
+                                    } catch (ExecutionException e) {
+                                        e.printStackTrace();
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
                             }
                             listView.setAdapter(adapter);
 //                            for(int i = 0; i < adapter.getCount(); i++)
@@ -396,6 +384,7 @@ public class FindCafe extends AppCompatActivity {
             MapItem item = items.get(position);
             mapItemView.setCafeName(item.getCafe_name());
             mapItemView.setDistance(item.getDistance());
+            mapItemView.setImg(item.getResId());
 
             // 리스트뷰 아이템 클릭 처리
             mapItemView.setTag(position);
@@ -409,6 +398,9 @@ public class FindCafe extends AppCompatActivity {
             int pos = (Integer) v.getTag();
             MapItem item = (MapItem) getItem(pos);
             Toast.makeText(getApplicationContext(), item.getCafe_name(), Toast.LENGTH_SHORT).show();
+            // 아이템 목록 클릭 시
+
+            
         }
     }
 
@@ -421,6 +413,7 @@ public class FindCafe extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... voids) {
+            String result = "";
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = null;
 
@@ -440,22 +433,33 @@ public class FindCafe extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            doc.getDocumentElement().normalize();
-            //System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
+            try {
+                doc.getDocumentElement().normalize();
 
-            NodeList nodeList = doc.getElementsByTagName(doc.getDocumentElement().getNodeName());
-            //Log.d("len: ", ""+ nodeList.getLength());
+                NodeList nodeList = doc.getElementsByTagName(doc.getDocumentElement().getNodeName());
+                //Log.d("len: ", ""+ nodeList.getLength());
 
-            for(int i = 0; i < nodeList.getLength(); i++){
-                Node node = nodeList.item(i);
-                if(node.getNodeType() == Node.ELEMENT_NODE){
-                    Element element = (Element) node;
-                    // 위생 등급에 따라 이미지 노출
-                    Log.d("OPEN_API", "이름: " + getTagValue("BSSH_NM", element));
-                    Log.d("OPEN_API", "위생등급: " + getTagValue("HG_ASGN_LV", element));
+                for(int i = 0; i < nodeList.getLength(); i++){
+                    Node node = nodeList.item(i);
+                    if(node.getNodeType() == Node.ELEMENT_NODE){
+                        Element element = (Element) node;
+                        // 위생 등급에 따라 이미지 노출
+                        if(getTagValue("CODE", element).equals("INFO-000")){
+//                            Log.d("OPEN_API", "이름: " + getTagValue("BSSH_NM", element));
+//                            Log.d("OPEN_API", "위생등급: " + getTagValue("HG_ASGN_LV", element));
+                            result = getTagValue("HG_ASGN_LV", element);
+                        }
+
+                    }
                 }
             }
-            return null;
+            // 위생등급 데이터가 없는 경우
+            catch (Exception e){
+                //Log.d("ds", "null");
+            }
+
+            //System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
+            return result;
         }
 
         @Override
@@ -473,8 +477,46 @@ public class FindCafe extends AppCompatActivity {
         return nValue.getNodeValue();
     }
 
-    class getDataThread extends Thread{
+    // 인자로 넘어온 카페가 데이터 목록에 있는지 확인
+    // 위생 등급에 따라 알맞은 이미지 리턴
+    public int setImgColor(String name) throws ExecutionException, InterruptedException {
+        String result = "";
+        url = "http://openapi.foodsafetykorea.go.kr/api/e740909b02604cfcb677/C004/xml/1/5";
+        url += "/UPSO_NM=" + name;
 
+        OpenAPI data = new OpenAPI(url);
+        result = data.execute().get();
+
+        if (result.length() == 0) return R.drawable.null_space;
+        else if(result.contains("우수") || result.contains("좋음")) return R.drawable.green_place;
+        else return R.drawable.red_place;
     }
 
+//    class GetDataThread extends Thread{
+//        String name;
+//        Float distance;
+//
+//        GetDataThread(String name, Float distance){
+//            this.name = name;
+//            this.distance = distance;
+//        }
+//
+//        @Override
+//        public void run() {
+//            super.run();
+//            try {
+//                adapter.addItem(new MapItem(name, String.format("%.2f", distance) + " m", setImgColor(name)));
+//            } catch (ExecutionException e) {
+//                e.printStackTrace();
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        isRunning = false;
+//    }
 }

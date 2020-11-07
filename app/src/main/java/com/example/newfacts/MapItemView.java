@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 
 public class MapItemView extends LinearLayout {
     TextView text1, text3;
-    //ImageView img;
+    ImageView img;
 
     public MapItemView(Context context) {
         super(context);
@@ -28,6 +28,7 @@ public class MapItemView extends LinearLayout {
 
         text1 = findViewById(R.id.text1);
         text3 = findViewById(R.id.text3);
+        img = findViewById(R.id.img_color);
     }
 
     public void setCafeName(String cafe_name){
@@ -36,4 +37,5 @@ public class MapItemView extends LinearLayout {
     public void setDistance(String distance){
         text3.setText(distance);
     }
+    public void setImg(int resId){img.setImageResource(resId);}
 }

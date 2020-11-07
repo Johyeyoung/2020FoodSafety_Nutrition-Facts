@@ -3,11 +3,12 @@ package com.example.newfacts;
 public class MapItem {
     String cafe_name;
     String distance;
-    //int resId;
+    int resId;
 
-    public MapItem(String cafe_name, String distance){
+    public MapItem(String cafe_name, String distance, int resId){
         this.cafe_name = cafe_name;
         this.distance = distance;
+        this.resId = resId;
     }
 
     public String getCafe_name() {
@@ -24,5 +25,13 @@ public class MapItem {
 
     public void setDistance(String distance) {
         this.distance = distance;
+    }
+
+    public int getResId() {
+        return resId;
+    }
+
+    public void setResId(int resId) {
+        this.resId = resId;
     }
 }
