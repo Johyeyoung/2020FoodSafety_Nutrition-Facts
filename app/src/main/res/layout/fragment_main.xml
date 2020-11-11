@@ -5,18 +5,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<<<<<<< HEAD
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="메인화면"
-        android:textSize="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-=======
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -244,6 +232,5 @@
 
 
     </RelativeLayout>
->>>>>>> bb3d177f0628c0b2149add41cadc603538985be1
 
 </androidx.constraintlayout.widget.ConstraintLayout>

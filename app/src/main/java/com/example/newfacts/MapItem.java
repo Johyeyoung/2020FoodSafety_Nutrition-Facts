@@ -5,14 +5,11 @@ public class MapItem {
     String distance;
     int resId;
 
-<<<<<<< HEAD
     public MapItem(String cafe_name, String distance){
         this.cafe_name = cafe_name;
         this.distance = distance;
     }
 
-=======
->>>>>>> bb3d177f0628c0b2149add41cadc603538985be1
     public MapItem(String cafe_name, String distance, int resId){
         this.cafe_name = cafe_name;
         this.distance = distance;
