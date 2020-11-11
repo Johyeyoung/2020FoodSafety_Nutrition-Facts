@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "567791185328",
+    "firebase_url": "https://new-facts-e58ac.firebaseio.com",
+    "project_id": "new-facts-e58ac",
+    "storage_bucket": "new-facts-e58ac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:567791185328:android:8cd36ddce296b6a2393a75",
+        "android_client_info": {
+          "package_name": "com.example.newfacts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "567791185328-ulnj0pdg9pao2njbnbhivag5pceq6rpu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.newfacts",
+            "certificate_hash": "90916e57a88a28ded69e8412c1e72ec6e3ec2271"
+          }
+        },
+        {
+          "client_id": "567791185328-pq6t2dakjhdod0aecik8aqadkvupds2c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnZPLXwOI69YR2cvcVybGVtXXodkftjX8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "567791185328-pq6t2dakjhdod0aecik8aqadkvupds2c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
