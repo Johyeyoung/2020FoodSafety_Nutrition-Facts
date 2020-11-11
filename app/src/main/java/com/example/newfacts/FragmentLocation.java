@@ -560,6 +560,7 @@ public class FragmentLocation extends Fragment {
                 MapItem item;
                 url = "http://openapi.foodsafetykorea.go.kr/api/e740909b02604cfcb677/C004/xml/1/5";
 
+                while(isRunning){
                 if(name_lst.size() > 0){
                     for(int i=0; i < name_lst.size(); i++){
                         item = (MapItem) adapter.getItem(i);
@@ -585,7 +586,7 @@ public class FragmentLocation extends Fragment {
                         handler.sendMessage(msg2);
                     }
                 }
-
+            }
                 Log.d("Test", "Thread_result: " + result);
 
 
