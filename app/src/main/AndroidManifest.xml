@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.newfacts">
 
+<<<<<<< HEAD
+=======
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+>>>>>>> bb3d177f0628c0b2149add41cadc603538985be1
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+<<<<<<< HEAD
+=======
+        <activity android:name=".SearchListActivity"></activity>
+>>>>>>> bb3d177f0628c0b2149add41cadc603538985be1
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,8 +37,11 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
     </application>
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+=======
+>>>>>>> bb3d177f0628c0b2149add41cadc603538985be1
 
 </manifest>
