@@ -6,11 +6,9 @@ android {
 
     defaultConfig {
         applicationId "com.example.newfacts"
-<<<<<<< HEAD
-        minSdkVersion 15
-=======
+
         minSdkVersion 16
->>>>>>> bb3d177f0628c0b2149add41cadc603538985be1
+
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
