@@ -2,6 +2,9 @@ package com.example.newfacts;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +53,7 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -88,7 +92,11 @@ public class FragmentLocation extends Fragment {
     androidx.appcompat.widget.AppCompatTextView title_bar;
 
     String url;
+    String rating;
+    String assign;
     boolean isRunning = false;
+
+    DisplayImgHandler handler;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -107,6 +115,7 @@ public class FragmentLocation extends Fragment {
 
         listView = (ListView) v.findViewById(R.id.listview);
         adapter = new MyAdapter();
+        handler = new DisplayImgHandler();
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -114,6 +123,13 @@ public class FragmentLocation extends Fragment {
         } else {
             init();
         }
+
+        // 어댑터에 담긴 아이템의 위생 등급을 가져오기 위한 스레드 작동
+//        SetImgThread thread = new SetImgThread();
+//        thread.start();
+
+
+
         return v;
     }
 
@@ -195,8 +211,8 @@ public class FragmentLocation extends Fragment {
     }
 
     public void setMyLocation(Location location) {
-//        Log.d("test123", "위도: " + location.getLatitude());
-//        Log.d("test123", "경도: " + location.getLongitude());
+        Log.d("test123", "위도: " + location.getLatitude());
+        Log.d("test123", "경도: " + location.getLongitude());
         currentLocation = new Location("current");
         currentLocation.setLatitude(location.getLatitude());
         currentLocation.setLongitude(location.getLongitude());
@@ -258,7 +274,7 @@ public class FragmentLocation extends Fragment {
         }
     }
 
-    // 구글 서버에서 주변 정보를 받아오기 위한 쓰래드
+    // 구글 서버에서 주변 정보를 받아오기 위한 스레드
     class NetworkThread extends Thread {
         double lat, lng;
 
@@ -336,7 +352,8 @@ public class FragmentLocation extends Fragment {
                         @Override
                         public void run() {
                             float distance = 0;
-//                            GetDataThread getdatathread;
+                            SetImgThread setImgThread;
+                            MapItem item;
                             cafeLocation = new Location("cafe");
                             // 지도에 표시되어있는 마커 제거
                             for (Marker marker : marker_lst) {
@@ -370,10 +387,14 @@ public class FragmentLocation extends Fragment {
                                 cafeLocation.setLongitude(lng3);
                                 distance = currentLocation.distanceTo(cafeLocation);
 
-                                if (name3.length() < 20) {
-                                    // 카페 인자 전달 -> 해당 카페가 위생 등급 정보가 있는지 확인
+                                // 잘못된 정보 거르기
+                                if (0 < name3.length() && name3.length() < 20) {
+                                    // 아이템 전달 -> 해당 카페가 위생 등급 정보가 있는지 확인
                                     //try {
-                                        adapter.addItem(new MapItem(name3, String.format("%.2f", distance) + " m", R.drawable.green_place));
+                                    item = new MapItem(name3, String.format("%.2f", distance) + " m");
+                                    adapter.addItem(item);
+
+
 //                                    } catch (ExecutionException e) {
 //                                        e.printStackTrace();
 //                                    } catch (InterruptedException e) {
@@ -382,6 +403,9 @@ public class FragmentLocation extends Fragment {
 
                                 }
                             }
+                            isRunning = true;
+                            setImgThread = new SetImgThread();
+                            setImgThread.start();
                             listView.setAdapter(adapter);
 //                            for(int i = 0; i < adapter.getCount(); i++)
 //                            Log.d("item: ", adapter.getItem(i).toString());
@@ -490,6 +514,7 @@ public class FragmentLocation extends Fragment {
 //                            Log.d("OPEN_API", "이름: " + getTagValue("BSSH_NM", element));
 //                            Log.d("OPEN_API", "위생등급: " + getTagValue("HG_ASGN_LV", element));
                             result = getTagValue("HG_ASGN_LV", element);
+                            result += ","+ getTagValue("HG_ASGN_NM", element);
                         }
 
                     }
@@ -519,24 +544,93 @@ public class FragmentLocation extends Fragment {
         return nValue.getNodeValue();
     }
 
-    // 인자로 넘어온 카페가 데이터 목록에 있는지 확인
-    // 위생 등급에 따라 알맞은 이미지 리턴
-    public int setImgColor(String name) throws ExecutionException, InterruptedException {
-        String result = "";
-        url = "http://openapi.foodsafetykorea.go.kr/api/e740909b02604cfcb677/C004/xml/1/5";
-        url += "/UPSO_NM=" + name;
+    // open api 에서 위생 등급과 지정 기관 받아오는 스레드
+   class SetImgThread extends Thread{
+        MapItem item;
 
-        OpenAPI data = new OpenAPI(url);
-        result = data.execute().get();
+//        SetImgThread(MapItem item){
+//            this.item = item;
+//        }
 
-        if (result.length() == 0) return R.drawable.null_space;
-        else if (result.contains("우수") || result.contains("좋음")) return R.drawable.green_place;
-        else return R.drawable.red_place;
+        @Override
+        public void run() {
+            super.run();
+                String result = "";
+                OpenAPI data = null;
+                MapItem item;
+                url = "http://openapi.foodsafetykorea.go.kr/api/e740909b02604cfcb677/C004/xml/1/5";
+
+                if(name_lst.size() > 0){
+                    for(int i=0; i < name_lst.size(); i++){
+                        item = (MapItem) adapter.getItem(i);
+                        url += "/UPSO_NM=" + name_lst.get(i);
+                        //Log.d("Test", name_lst.get(i));
+                        data = new OpenAPI(url);
+                        try {
+                            result = data.execute().get();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        Message msg1 = handler.obtainMessage();
+                        msg1.what = 0;
+                        msg1.obj = item;
+                        handler.sendMessage(msg1);
+
+                        Message msg2 = handler.obtainMessage();
+                        msg2.what = 1;
+                        msg2.obj = result;
+                        handler.sendMessage(msg2);
+                    }
+                }
+
+                Log.d("Test", "Thread_result: " + result);
+
+
+        }
     }
 
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        isRunning = false;
-//    }
+    class DisplayImgHandler extends Handler{
+        MapItem item;
+        String rating;
+        String assign;
+
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+
+            switch (msg.what){
+                case 0:
+                    item = (MapItem) msg.obj;
+                    break;
+                case 1:
+                    String result = (String) msg.obj;
+                     if(result.length() != 0){
+                         rating = result.split(",")[0];
+                         assign = result.split(",")[1];
+                     }
+                     else{
+                         rating = "";
+                         assign = "";
+                     }
+
+//                     Log.d("Test", "Handler_rating: " + rating);
+//                     Log.d("Test", "Handler_assign: " + assign);
+                     //Log.d("Test", "Item.name" + item.getCafe_name());
+                    if (result.length() == 0) item.setResId(R.drawable.null_space);
+                    else if (result.contains("우수") || result.contains("좋음")) item.setResId(R.drawable.green_place);
+                    else item.setResId(R.drawable.red_place);
+                    //listView.setAdapter(adapter);
+                    break;
+            }
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        isRunning = false;
+    }
 }
