@@ -1,7 +1,6 @@
 package com.newfact.newfacts;
 
 public class UserInfo {
-    public String name = "";
     public String sex = "";
     public int age = 0;
     public int weight=0;
@@ -15,10 +14,9 @@ public class UserInfo {
 
     public UserInfo(){}
 
-    public UserInfo(String name, String sex, int age, int height, int weight,
+    public UserInfo( String sex, int age, int height, int weight,
                     boolean milk_allergy, boolean soybean_allergy, boolean peach_allergy,
                     boolean tomato_allergy, boolean squid_allergy){
-        this.name = name;
         this.sex = sex;
         this.age = age;
         this.weight = weight;
