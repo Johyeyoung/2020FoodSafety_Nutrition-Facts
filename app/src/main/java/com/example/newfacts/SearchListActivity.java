@@ -1,5 +1,6 @@
 package com.example.newfacts;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,10 +12,21 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.newfacts.menu.Product;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class SearchListActivity extends AppCompatActivity {
+
+    // firebase 선언
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference cartDBRef = database.getReference().child("data");
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +56,33 @@ public class SearchListActivity extends AppCompatActivity {
         data.add(new Product("카페라떼", "4500", "top"));
         data.add(new Product("아메리카노", "3500", "bottom"));
 
-        final ProductAdapter adapter = new ProductAdapter(data);
+
         final ListView listView = findViewById(R.id.product_select_view);
-        listView.setAdapter(adapter);
 
 
+        ValueEventListener mValueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data.clear();
+
+                for (DataSnapshot datasnapshot : snapshot.getChildren()) {
+                    Product product = datasnapshot.getValue(Product.class);
+                    product.setKey(datasnapshot.getKey());
+                    data.add(product);
+                }
+
+                final ProductAdapter adapter = new ProductAdapter(data);
+                listView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("error");
+            }
+        };
+
+
+        cartDBRef.addValueEventListener(mValueEventListener);
 
     }
 }
