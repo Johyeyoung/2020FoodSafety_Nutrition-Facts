@@ -63,6 +63,14 @@
             tools:layout_editor_absoluteY="122dp" >
 
         </ListView>
+        <TextView
+            android:id = "@+id/empty_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="검색결과가 없습니다."
+            android:visibility="gone">
+        </TextView>
 
         <ProgressBar
             android:id="@+id/progressBar2"

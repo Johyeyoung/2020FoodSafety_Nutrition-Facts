@@ -8,23 +8,33 @@ import java.util.Map;
 
 
 public class Product implements Parcelable{
-    private String title;
-    private String price;
+    private String franchise;
+    private String name;
     private String category;
-    private boolean check=false;
+    private String desc;
+    private String pic;
+    private String nutrition;
+    private String alergy;
     private String key;
-    public Product(String title, String price, String category) {
-        this.title = title;
-        this.price = price;
+    public Product(int caffeine, String category, String desc, float fat, String franchise, int kcal,
+                   int milk_aliergy, String name, int octopus_aliergy, int peach_aliergy, String pic, int protein,
+                   int sodidum, int soy_aliergy, int sugar, int tomato_aliergy, String volume) {
+        this.franchise = franchise;
+        this.name = name;
         this.category = category;
+        this.desc = desc;
+        this.pic = pic;
+        this.nutrition = name;  // 변경 요망
+        this.alergy = name;  // 변경 요망
+
+
     }
     public Product(){}
 
     public Product(Parcel in) {
-        title = in.readString();
-        price = in.readString();
+        franchise = in.readString();
+        name = in.readString();
         category = in.readString();
-        check = in.readByte() != 0;
         key = in.readString();
     }
 
@@ -48,14 +58,6 @@ public class Product implements Parcelable{
         this.key = key;
     }
 
-    public boolean isCheck() {
-        return check;
-    }
-
-    public void setCheck(boolean check) {
-        this.check = check;
-    }
-
     public String getCategory() {
         return category;
     }
@@ -64,34 +66,34 @@ public class Product implements Parcelable{
         this.category = category;
     }
 
-    public String getTitle() {
-        return title;
+    public String getFranchise() {
+        return franchise;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setFranchise(String franchise) {
+        this.franchise = franchise;
     }
 
-    public String getPrice() {
-        return price;
+    public String getName() {
+        return name;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "title='" + title + '\'' +
-                ", price='" + price + '\'' +
+                "franchise='" + franchise + '\'' +
+                ", name='" + name + '\'' +
                 ", category='" + category + '\'' +
                 '}';
     }
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
-        result.put("title", title);
-        result.put("price", price);
+        result.put("franchise", franchise);
+        result.put("name", name);
         result.put("category", category);
         return result;
     }
@@ -104,10 +106,9 @@ public class Product implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(title);
-        dest.writeString(price);
+        dest.writeString(franchise);
+        dest.writeString(name);
         dest.writeString(category);
-        dest.writeByte((byte) (check ? 1 : 0));
         dest.writeString(key);
     }
 }

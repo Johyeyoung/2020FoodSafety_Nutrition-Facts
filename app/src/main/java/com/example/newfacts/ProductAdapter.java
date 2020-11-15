@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,9 +20,9 @@ public class ProductAdapter extends BaseAdapter {
     public ProductAdapter(List<Product> data){
         this.mData=data;
         mProductImageMap = new HashMap<>();
-        mProductImageMap.put("selecto", R.drawable.bback);
-        mProductImageMap.put("coffeebean", R.drawable.coffeebean);
-        mProductImageMap.put("gongcha",R.drawable.gongcha);
+//        mProductImageMap.put("selecto", R.drawable.bback);
+//        mProductImageMap.put("coffeebean", R.drawable.coffeebean);
+//        mProductImageMap.put("gongcha",R.drawable.gongcha);
     }
     @Override
     public int getCount() {
@@ -47,37 +46,29 @@ public class ProductAdapter extends BaseAdapter {
         if(convertView==null){
             holder = new ViewHolder();
             convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product,parent,false);
+
             ImageView productImage = convertView.findViewById(R.id.product_image);
             TextView productTitle= convertView.findViewById(R.id.product_title);
-            TextView productPrice= convertView.findViewById(R.id.product_price);
-            CheckBox checkBox = convertView.findViewById(R.id.checkBox);
+            TextView productFranchise= convertView.findViewById(R.id.product_franchise);
             holder.productImage=productImage;
             holder.productTitle=productTitle;
-            holder.productPrice= productPrice;
-            holder.checkBox=checkBox;
+            holder.productFranchise= productFranchise;
             convertView.setTag(holder);
         }else{
             holder = (ViewHolder) convertView.getTag();
         }
         Product product = mData.get(position);
-        holder.productTitle.setText(product.getTitle());
-        holder.productPrice.setText(product.getPrice());
+        holder.productTitle.setText(product.getName());
+        holder.productFranchise.setText(product.getFranchise());
 //        holder.productImage.setImageResource(mProductImageMap.get(product.getCategory()));
-        holder.checkBox.setChecked(product.isCheck());
-        holder.checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean newState = !mData.get(position).isCheck();
-                mData.get(position).setCheck(newState);
-                System.out.println(newState);
-            }
-        });
+
         return convertView;
     }
+
+    // ..........Holder 정의
     static class ViewHolder{
         ImageView productImage;
         TextView productTitle;
-        TextView productPrice;
-        CheckBox checkBox;
+        TextView productFranchise;
     }
 }
