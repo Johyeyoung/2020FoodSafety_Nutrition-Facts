@@ -1,9 +1,10 @@
-package com.example.newfacts;
+package com.newfact.newfacts;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class UserInfo {
+    public String id = "";
     public String sex = "";
     public String age = "0";
     public String height="0";
@@ -17,10 +18,10 @@ public class UserInfo {
 
     public UserInfo(){}
 
-    public UserInfo( String sex, String age, String height, String weight,
+    public UserInfo( String id, String sex, String age, String height, String weight,
                     boolean milk_allergy, boolean soybean_allergy, boolean peach_allergy,
                     boolean tomato_allergy, boolean squid_allergy){
-
+        this.id = id;
         this.sex = sex;
         this.age = age;
         this.height = height;
@@ -35,6 +36,7 @@ public class UserInfo {
 
     public Map<String, Object> toMap(){
         HashMap<String, Object> result = new HashMap<>();
+        result.put("id", id);
         result.put("sex", sex);
         result.put("age", age);
         result.put("height", height);
@@ -48,3 +50,4 @@ public class UserInfo {
         return result;
     }
 }
+
