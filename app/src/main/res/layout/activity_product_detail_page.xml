@@ -34,6 +34,7 @@
 
 
             <TextView
+                android:id="@+id/Franchise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -41,9 +42,10 @@
                 android:textColor="#7e7e7e"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                tools:text="STARBUCKS" />
+                android:text="STARBUCKS" />
 
             <TextView
+                android:id="@+id/Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -52,9 +54,10 @@
                 android:textColor="#000000"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                tools:text="아이스 블론드 애플 쿠키 라떼" />
+                android:text="아이스 블론드 애플 쿠키 라떼" />
 
             <TextView
+                android:id="@+id/NameEnglish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -64,7 +67,7 @@
                 android:textColor="#9c7e84a3"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                tools:text="Iced Blonde Apple Cookie Latte" />
+                android:text="Iced Blonde Apple Cookie Latte" />
 
             <View
                 android:layout_width="match_parent"
@@ -73,18 +76,21 @@
                 android:background="#7e84a3" />
 
             <TextView
+                android:id="@+id/Info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginLeft="6dp"
-                android:layout_marginBottom="11dp"
-                android:gravity="center_horizontal"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="3dp"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                tools:text="상품상세정보" />
+                android:text="상품상세정보 " />
+
+
 
             <TextView
+                android:id="@+id/Desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"

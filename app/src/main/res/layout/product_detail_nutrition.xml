@@ -31,6 +31,7 @@
 
 
             <TextView
+                android:id="@+id/Volume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -93,25 +94,29 @@
 
             <TableRow>
 
+
                 <TextView
-                    android:layout_marginStart="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
+                    android:lineSpacingExtra="11sp"
                     android:textColor="#131523"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    tools:text="칼로리" />
+                    android:text="칼로리" />
 
 
                 <TextView
                     android:id="@+id/KcalAmount"
-                    android:layout_width="45dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="120kcal"
                     android:textColor="#7e7e7e"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
-                    tools:text="20kcal" />
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <ProgressBar
                     android:id="@+id/KcalBar"
@@ -125,13 +130,13 @@
                 <TextView
                     android:id="@+id/KcalRate"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="25dp"
                     android:layout_marginLeft="18dp"
                     android:textColor="#7e7e7e"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
-                    tools:text="10 %" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="10 %" />
 
                 <ImageButton
                     android:id="@+id/KcalBtn"
@@ -160,25 +165,27 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
+                    android:lineSpacingExtra="11sp"
                     android:textColor="#131523"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    tools:text="지방" />
+                    android:text="지방 " />
 
 
                 <TextView
                     android:id="@+id/FatAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="20g"
                     android:textColor="#7e7e7e"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
-                    tools:text="20g" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    />
 
                 <ProgressBar
                     android:id="@+id/FatBar"
@@ -192,13 +199,13 @@
                 <TextView
                     android:id="@+id/FatRate"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="25dp"
                     android:layout_marginLeft="18dp"
                     android:textColor="#7e7e7e"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
-                    tools:text="10 %" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="10 %" />
 
                 <ImageButton
                     android:id="@+id/FatBtn"
@@ -227,26 +234,27 @@
 
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="16dp"
-                    android:textColor="#131523"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    tools:text="단백질" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:lineSpacingExtra="11sp"
+                android:textColor="#131523"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="단백질 " />
 
 
                 <TextView
                     android:id="@+id/ProteinAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:textColor="#7e7e7e"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
-                    tools:text="20g" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="20g" />
 
                 <ProgressBar
                     android:id="@+id/ProteinBar"
@@ -260,13 +268,14 @@
                 <TextView
                     android:id="@+id/ProteinRate"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="25dp"
                     android:layout_marginLeft="18dp"
+                    android:text="10 %"
                     android:textColor="#7e7e7e"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
-                    tools:text="10 %" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    />
 
                 <ImageButton
                     android:id="@+id/ProteinBtn"
@@ -295,26 +304,27 @@
 
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="16dp"
-                    android:textColor="#131523"
-                    android:textSize="13sp"
-                    android:textStyle="bold"
-                    tools:text="나트륨" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:lineSpacingExtra="11sp"
+                android:textColor="#131523"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="나트륨 " />
 
 
                 <TextView
                     android:id="@+id/SodiumAmount"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:textColor="#7e7e7e"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
-                    tools:text="20mg" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="20mg" />
 
                 <ProgressBar
                     android:id="@+id/SodiumBar"
@@ -328,13 +338,13 @@
                 <TextView
                     android:id="@+id/SodiumRate"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="25dp"
                     android:layout_marginLeft="18dp"
                     android:textColor="#7e7e7e"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
-                    tools:text="10 %" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="10 %" />
 
                 <ImageButton
                     android:id="@+id/SodiumBtn"
@@ -363,26 +373,27 @@
 
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="16dp"
-                    android:textColor="#131523"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    tools:text="당류" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:lineSpacingExtra="11sp"
+                android:textColor="#131523"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="당류 " />
 
 
                 <TextView
                     android:id="@+id/SugarAmount"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:textColor="#7e7e7e"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
-                    tools:text="20g" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="20g" />
 
                 <ProgressBar
                     android:id="@+id/SugarBar"
@@ -396,13 +407,13 @@
                 <TextView
                     android:id="@+id/SugarRate"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="25dp"
                     android:layout_marginLeft="18dp"
                     android:textColor="#7e7e7e"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
-                    tools:text="10 %" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="10 %" />
 
                 <ImageButton
                     android:id="@+id/SugarBtn"
@@ -431,26 +442,27 @@
 
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginLeft="16dp"
-                    android:textColor="#131523"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    tools:text="카페인" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:lineSpacingExtra="11sp"
+                android:textColor="#131523"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="카페인 " />
 
 
                 <TextView
                     android:id="@+id/CaffeineAmount"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:textColor="#7e7e7e"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
-                    tools:text="20mg" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="20mg" />
 
                 <ProgressBar
                     android:id="@+id/CaffeineBar"
@@ -464,13 +476,13 @@
                 <TextView
                     android:id="@+id/CaffeineRate"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="25dp"
                     android:layout_marginLeft="18dp"
                     android:textColor="#7e7e7e"
-                    android:textSize="13sp"
-                    android:textStyle="normal"
-                    tools:text="10 %" />
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="10 %" />
 
                 <ImageButton
                     android:id="@+id/CaffeineBtn"
@@ -511,7 +523,7 @@
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:textColor="#ea3f3f"
-                tools:text="알레르기 유발 물질"
+                android:text="알레르기 유발 물질 "
                 />
 
 

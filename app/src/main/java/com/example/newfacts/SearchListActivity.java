@@ -68,6 +68,9 @@ public class SearchListActivity extends AppCompatActivity {
                     product.setKey(datasnapshot.getKey());
 
 
+
+
+
                     // 3-1. 이름으로 데이터 조회 (띄어쓰기 제거)
                     String name = product.getName().replaceAll(" ", "");
                     if(name.contains(srch_word.replaceAll(" ", ""))){
@@ -99,6 +102,7 @@ public class SearchListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println(parent.getItemAtPosition(position).toString());
                 Intent intent = new Intent(SearchListActivity.this, ProductDetailPage.class);
                 intent.putExtra("detail", parent.getItemAtPosition(position).toString());  // 검색어 전달 (스타벅스/나이트로 콜드 브루/임시)
                 startActivity(intent);
