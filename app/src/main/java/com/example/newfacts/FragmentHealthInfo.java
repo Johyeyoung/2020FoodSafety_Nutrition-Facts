@@ -1,4 +1,4 @@
-package com.newfact.newfacts;
+package com.example.newfacts;
 
 import android.os.Bundle;
 

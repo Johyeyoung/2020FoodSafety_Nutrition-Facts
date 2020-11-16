@@ -1,4 +1,4 @@
-package com.newfact.newfacts;
+package com.example.newfacts;
 
 import androidx.appcompat.app.AppCompatActivity;
 

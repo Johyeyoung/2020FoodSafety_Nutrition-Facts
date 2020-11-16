@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.newfacts.menu.Product;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -53,12 +55,15 @@ public class ProductDetailPage extends AppCompatActivity {
 
 
         // 화면 구성
+        // Glide로 이미지 표시하기
+        ImageView ivImage = findViewById(R.id.imageView);
+        Glide.with(this).load(pic).into(ivImage);
         TextView Franchise = (TextView) findViewById(R.id.Franchise);
         Franchise.setText(franchise);
         TextView Name = (TextView) findViewById(R.id.Name);
         Name.setText(name);
         TextView NameEnglish = (TextView) findViewById(R.id.NameEnglish);
-       // Franchise.setText(nameEnglish);
+        // Franchise.setText(nameEnglish);
         TextView Desc = (TextView) findViewById(R.id.Desc);
         Desc.setText(desc);
         TextView Volume = (TextView) findViewById(R.id.Volume);
@@ -98,6 +103,7 @@ public class ProductDetailPage extends AppCompatActivity {
             progress[i] = (ProgressBar) findViewById(Rid_Progress_bar[i]);
             progress[i].setProgress(rate);
         }
+
 
 
 

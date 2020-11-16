@@ -1,5 +1,10 @@
 package com.example.newfacts;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,8 +12,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.newfacts.menu.Product;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,13 +26,9 @@ import java.util.Map;
 public class ProductAdapter extends BaseAdapter {
     private List<Product> mData;
     private Map<String,Integer> mProductImageMap;
-
     public ProductAdapter(List<Product> data){
         this.mData=data;
         mProductImageMap = new HashMap<>();
-//        mProductImageMap.put("selecto", R.drawable.bback);
-//        mProductImageMap.put("coffeebean", R.drawable.coffeebean);
-//        mProductImageMap.put("gongcha",R.drawable.gongcha);
     }
     @Override
     public int getCount() {
@@ -60,7 +66,8 @@ public class ProductAdapter extends BaseAdapter {
         Product product = mData.get(position);
         holder.productTitle.setText(product.getName());
         holder.productFranchise.setText(product.getFranchise());
-//        holder.productImage.setImageResource(mProductImageMap.get(product.getCategory()));
+        Glide.with(parent.getContext()).load(product.getPic()).into(holder.productImage); // URI로 이미지 추가
+
 
         return convertView;
     }

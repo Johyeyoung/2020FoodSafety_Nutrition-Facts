@@ -1,4 +1,4 @@
-package com.newfact.newfacts;
+package com.example.newfacts;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class CustomChoiceListViewAdapter extends BaseAdapter {
 
-    private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>();
+    private ArrayList<com.example.newfacts.menu.ListViewItem> listViewItemList = new ArrayList<com.example.newfacts.menu.ListViewItem>();
 
     public CustomChoiceListViewAdapter(){}
 
@@ -45,7 +45,7 @@ public class CustomChoiceListViewAdapter extends BaseAdapter {
 
         TextView textView1 = (TextView)convertView.findViewById(R.id.textView1);
 
-        ListViewItem listViewItem = listViewItemList.get(position);
+        com.example.newfacts.menu.ListViewItem listViewItem = listViewItemList.get(position);
 
         textView1.setText(listViewItem.getText());
         return convertView;
@@ -53,7 +53,7 @@ public class CustomChoiceListViewAdapter extends BaseAdapter {
 
 
     public void addItem(String text){
-        ListViewItem item = new ListViewItem();
+        com.example.newfacts.menu.ListViewItem item = new com.example.newfacts.menu.ListViewItem();
 
         item.setText(text);
         listViewItemList.add(item);

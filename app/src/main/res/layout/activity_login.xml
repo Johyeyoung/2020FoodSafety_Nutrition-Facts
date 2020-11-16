@@ -6,15 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
+
     <TextView
+        android:id="@+id/textViewAppTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/textView"
+        android:text="New Facts"
+        android:gravity="center"
+        android:textSize="50dp"/>
+
+
+    <TextView
+        android:layout_marginTop="50dp"
         android:id="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/login_linear_layout"
-        android:layout_marginBottom="30dp"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="가 입 하 기"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:text="이메일 회원가입" />
     <LinearLayout
         android:id="@+id/login_linear_layout"
         android:layout_width="match_parent"
@@ -23,17 +34,6 @@
         android:gravity="center"
         android:orientation="vertical">
 
-<!--        <EditText-->
-<!--            android:id="@+id/editTextNickNname"-->
-<!--            android:layout_width="350dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_above="@+id/editTextTextEmailAddress"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:drawableLeft="@drawable/icon"-->
-<!--            android:drawablePadding="10dp"-->
-<!--            android:ems="10"-->
-<!--            android:hint="nick-name"-->
-<!--            android:inputType="text" />-->
 
         <EditText
             android:id="@+id/editTextTextEmailAddress"
@@ -65,26 +65,34 @@
             android:layout_marginTop="10dp"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:text="CONTINUE" />
+            android:text="회원가입" />
 
     </LinearLayout>
 
 
-    <com.google.android.gms.common.SignInButton
-        android:layout_marginTop="20dp"
-        android:id="@+id/google_login_button"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/login_linear_layout"
-        android:layout_centerHorizontal="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        android:layout_below="@id/login_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    </com.google.android.gms.common.SignInButton>
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="구글 계정으로 회원가입" />
 
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/google_login_button"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp">
 
+        </com.google.android.gms.common.SignInButton>
+    </LinearLayout>
 
 
 </RelativeLayout>
