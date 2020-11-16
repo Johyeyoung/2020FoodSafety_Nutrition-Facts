@@ -1,11 +1,14 @@
 package com.newfact.newfacts;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class UserInfo {
-    public String name = "";
+    public String id = "";
     public String sex = "";
-    public int age = 0;
-    public int weight=0;
-    public int height=0;
+    public String age = "0";
+    public String height="0";
+    public String weight="0";
 
     public boolean milk_allergy=false;
     public boolean soybean_allergy=false;
@@ -15,18 +18,36 @@ public class UserInfo {
 
     public UserInfo(){}
 
-    public UserInfo(String name, String sex, int age, int height, int weight,
+    public UserInfo( String id, String sex, String age, String height, String weight,
                     boolean milk_allergy, boolean soybean_allergy, boolean peach_allergy,
                     boolean tomato_allergy, boolean squid_allergy){
-        this.name = name;
+        this.id = id;
         this.sex = sex;
         this.age = age;
-        this.weight = weight;
         this.height = height;
+        this.weight = weight;
         this.milk_allergy = milk_allergy;
         this.soybean_allergy = soybean_allergy;
         this.peach_allergy = peach_allergy;
         this.tomato_allergy = tomato_allergy;
         this.squid_allergy = squid_allergy;
     }
+
+
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("id", id);
+        result.put("sex", sex);
+        result.put("age", age);
+        result.put("height", height);
+        result.put("weight", weight);
+        result.put("milk_allergy", milk_allergy);
+        result.put("soybean_allergy", soybean_allergy);
+        result.put("peach_allergy", peach_allergy);
+        result.put("tomato_allergy", tomato_allergy);
+        result.put("squid_allergy", squid_allergy);
+
+        return result;
+    }
 }
+
