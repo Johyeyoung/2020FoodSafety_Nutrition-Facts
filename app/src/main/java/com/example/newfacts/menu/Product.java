@@ -84,11 +84,7 @@ public class Product implements Parcelable{
 
     @Override
     public String toString() {
-        return "Product{" +
-                "franchise='" + franchise + '\'' +
-                ", name='" + name + '\'' +
-                ", category='" + category + '\'' +
-                '}';
+        return  franchise + '/' + name +'/' + category;
     }
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();

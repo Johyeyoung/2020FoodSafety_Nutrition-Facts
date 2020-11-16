@@ -95,15 +95,15 @@ public class SearchListActivity extends AppCompatActivity {
 
 
 
-        // 4. 아이템을 클릭하면 상세정보 페이지로 (Product{franchise='스타벅스', name='나이트로 쇼콜라 클라우드', category='임시'})
+        // 4. 아이템을 클릭하면 상세정보 페이지로
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(SearchListActivity.this, ProductDetailPage.class);
-                intent.putExtra("detail", parent.getItemAtPosition(position).toString());  // 검색어 전달
+                intent.putExtra("detail", parent.getItemAtPosition(position).toString());  // 검색어 전달 (스타벅스/나이트로 콜드 브루/임시)
                 startActivity(intent);
 
-                System.out.println(parent.getItemAtPosition(position).toString());
+
 
             }
         });
