@@ -30,12 +30,7 @@
                 tools:layout_editor_absoluteX="-1dp"
                 tools:layout_editor_absoluteY="2dp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_centerInParent="true"
-                android:layout_marginBottom="5dp"
-                android:background="#7e84a3" />
+
 
 
             <TextView
@@ -74,7 +69,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="30dp"
                 android:background="#7e84a3" />
 
             <TextView
@@ -84,12 +79,9 @@
                 android:layout_marginLeft="6dp"
                 android:layout_marginBottom="11dp"
                 android:gravity="center_horizontal"
-                android:lineSpacingExtra="5sp"
                 android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                tools:layout_editor_absoluteX="28dp"
-                tools:layout_editor_absoluteY="470dp"
                 tools:text="상품상세정보" />
 
             <TextView
@@ -110,88 +102,12 @@
 로 즐겨보세요." />
 
             <!-- 성분표시 부분 -->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="84dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="41dp">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:lineSpacingExtra="11sp"
-                    android:textColor="#000000"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    tools:text="Nutrition Facts" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="11dp"
-                    android:layout_marginRight="18dp"
-                    android:layout_marginBottom="59dp"
-                    android:lineSpacingExtra="6sp"
-                    android:textColor="#c2e82f2f"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    tools:text="총 내용량  427ml" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginEnd="0dp"
-                    android:layout_marginRight="0dp"
-                    android:layout_marginBottom="51dp"
-                    android:background="#7e84a3" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="17dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginBottom="20dp"
-                    android:lineSpacingExtra="6sp"
-                    android:textColor="#7e84a3"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    tools:text="총 내용량 당" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="308dp"
-                    android:layout_marginLeft="308dp"
-                    android:layout_marginBottom="14dp"
-                    android:gravity="end"
-                    android:lineSpacingExtra="3sp"
-                    android:textColor="#7e84a3"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    tools:text="1일 영양성분\n 기준치에 대한 비율" />
-
-            </RelativeLayout>
-
+            <include layout="@layout/product_detail_nutrition">
+            </include>
 
 
 
         </LinearLayout>
-
-
     </ScrollView>
 
 
