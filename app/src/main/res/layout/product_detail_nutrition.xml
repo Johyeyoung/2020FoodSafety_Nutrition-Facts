@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="84dp"
             android:layout_marginTop="27dp"
-            android:layout_editor_absoluteX="70dp">
+           >
 
 
             <TextView
@@ -91,9 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="166dp">
 
-            <TableRow
-                android:layout_height="match_parent"
-                android:layout_weight="match_parent">
+            <TableRow>
 
                 <TextView
                     android:layout_marginStart="15dp"
@@ -158,9 +156,7 @@
                 android:layout_marginBottom="3dp"
                 android:background="#9C9C9C" />
 
-            <TableRow
-                android:layout_height="match_parent"
-                android:layout_weight="match_parent">
+            <TableRow>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -227,11 +223,10 @@
                 android:layout_marginBottom="3dp"
                 android:background="#9C9C9C" />
 
-            <TableRow
-                android:layout_height="match_parent"
-                android:layout_weight="match_parent">
+            <TableRow>
 
-                <TextView
+
+            <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -296,11 +291,10 @@
                 android:layout_marginBottom="3dp"
                 android:background="#9C9C9C" />
 
-            <TableRow
-                android:layout_height="match_parent"
-                android:layout_weight="match_parent">
+            <TableRow>
 
-                <TextView
+
+            <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -365,11 +359,10 @@
                 android:layout_marginBottom="3dp"
                 android:background="#9C9C9C" />
 
-            <TableRow
-                android:layout_height="match_parent"
-                android:layout_weight="match_parent">
+            <TableRow>
 
-                <TextView
+
+            <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -434,11 +427,10 @@
                 android:layout_marginBottom="3dp"
                 android:background="#9C9C9C" />
 
-            <TableRow
-                android:layout_height="match_parent"
-                android:layout_weight="match_parent">
+            <TableRow>
 
-                <TextView
+
+            <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
