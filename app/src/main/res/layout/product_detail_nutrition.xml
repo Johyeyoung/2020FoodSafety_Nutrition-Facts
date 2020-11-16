@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!-- 성분표시 부분 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:layout_marginTop="27dp"
+           >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:lineSpacingExtra="11sp"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:text="Nutrition Facts" />
+
+
+            <TextView
+                android:id="@+id/Volume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="11dp"
+                android:layout_marginRight="18dp"
+                android:layout_marginBottom="59dp"
+                android:lineSpacingExtra="6sp"
+                android:textColor="#c2e82f2f"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:text="총 내용량  427ml" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="51dp"
+                android:background="#7e84a3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="17dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="20dp"
+                android:lineSpacingExtra="6sp"
+                android:textColor="#7e84a3"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="총 내용량 당" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="308dp"
+                android:layout_marginLeft="308dp"
+                android:layout_marginBottom="14dp"
+                android:gravity="end"
+                android:lineSpacingExtra="3sp"
+                android:textColor="#7e84a3"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:text="1일 영양성분\n 기준치에 대한 비율" />
+
+        </RelativeLayout>
+
+        <!-- 성분표시 부분 -->
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="166dp">
+
+            <TableRow>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:lineSpacingExtra="11sp"
+                    android:textColor="#131523"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="칼로리" />
+
+
+                <TextView
+                    android:id="@+id/KcalAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="120kcal"
+                    android:textColor="#7e7e7e"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:id="@+id/KcalBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="166dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginLeft="16dp" />
+
+
+                <TextView
+                    android:id="@+id/KcalRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="18dp"
+                    android:textColor="#7e7e7e"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="10 %" />
+
+                <ImageButton
+                    android:id="@+id/KcalBtn"
+                    android:layout_width="12dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginRight="13dp"
+                    app:srcCompat="@drawable/next" />
+
+            </TableRow>
+
+            <View
+                android:layout_height="0.3dp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginBottom="3dp"
+                android:background="#9C9C9C" />
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:lineSpacingExtra="11sp"
+                    android:textColor="#131523"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="지방 " />
+
+
+                <TextView
+                    android:id="@+id/FatAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="20g"
+                    android:textColor="#7e7e7e"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    />
+
+                <ProgressBar
+                    android:id="@+id/FatBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="166dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginLeft="16dp" />
+
+
+                <TextView
+                    android:id="@+id/FatRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="18dp"
+                    android:textColor="#7e7e7e"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="10 %" />
+
+                <ImageButton
+                    android:id="@+id/FatBtn"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginRight="13dp"
+                    app:srcCompat="@drawable/next" />
+
+            </TableRow>
+
+            <View
+                android:layout_height="0.3dp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginBottom="3dp"
+                android:background="#9C9C9C" />
+
+            <TableRow>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:lineSpacingExtra="11sp"
+                android:textColor="#131523"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="단백질 " />
+
+
+                <TextView
+                    android:id="@+id/ProteinAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:textColor="#7e7e7e"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="20g" />
+
+                <ProgressBar
+                    android:id="@+id/ProteinBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="166dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginLeft="16dp" />
+
+
+                <TextView
+                    android:id="@+id/ProteinRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="18dp"
+                    android:text="10 %"
+                    android:textColor="#7e7e7e"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    />
+
+                <ImageButton
+                    android:id="@+id/ProteinBtn"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginRight="13dp"
+                    app:srcCompat="@drawable/next" />
+
+            </TableRow>
+
+            <View
+                android:layout_height="0.3dp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginBottom="3dp"
+                android:background="#9C9C9C" />
+
+            <TableRow>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:lineSpacingExtra="11sp"
+                android:textColor="#131523"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="나트륨 " />
+
+
+                <TextView
+                    android:id="@+id/SodiumAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:textColor="#7e7e7e"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="20mg" />
+
+                <ProgressBar
+                    android:id="@+id/SodiumBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="166dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginLeft="16dp" />
+
+
+                <TextView
+                    android:id="@+id/SodiumRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="18dp"
+                    android:textColor="#7e7e7e"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="10 %" />
+
+                <ImageButton
+                    android:id="@+id/SodiumBtn"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginRight="13dp"
+                    app:srcCompat="@drawable/next" />
+
+            </TableRow>
+
+            <View
+                android:layout_height="0.3dp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginBottom="3dp"
+                android:background="#9C9C9C" />
+
+            <TableRow>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:lineSpacingExtra="11sp"
+                android:textColor="#131523"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="당류 " />
+
+
+                <TextView
+                    android:id="@+id/SugarAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:textColor="#7e7e7e"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="20g" />
+
+                <ProgressBar
+                    android:id="@+id/SugarBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="166dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginLeft="16dp" />
+
+
+                <TextView
+                    android:id="@+id/SugarRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="18dp"
+                    android:textColor="#7e7e7e"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="10 %" />
+
+                <ImageButton
+                    android:id="@+id/SugarBtn"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginRight="13dp"
+                    app:srcCompat="@drawable/next" />
+
+            </TableRow>
+
+            <View
+                android:layout_height="0.3dp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginBottom="3dp"
+                android:background="#9C9C9C" />
+
+            <TableRow>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:lineSpacingExtra="11sp"
+                android:textColor="#131523"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="카페인 " />
+
+
+                <TextView
+                    android:id="@+id/CaffeineAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:textColor="#7e7e7e"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="20mg" />
+
+                <ProgressBar
+                    android:id="@+id/CaffeineBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="166dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginLeft="16dp" />
+
+
+                <TextView
+                    android:id="@+id/CaffeineRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="18dp"
+                    android:textColor="#7e7e7e"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:text="10 %" />
+
+                <ImageButton
+                    android:id="@+id/CaffeineBtn"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginRight="13dp"
+                    app:srcCompat="@drawable/next" />
+
+            </TableRow>
+
+            <View
+                android:layout_height="0.3dp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginBottom="3dp"
+                android:background="#9C9C9C" />
+        </TableLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:layout_marginTop="34dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#ea3f3f"
+                android:text="알레르기 유발 물질 "
+                />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="-2dp"
+                android:layout_marginRight="-2dp"
+                android:layout_marginBottom="57dp"
+                android:background="#7e84a3" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="17dp"
+                android:layout_marginLeft="16dp"
+                android:lineSpacingExtra="6sp"
+                android:textColor="#7e84a3"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:text="우유" />
+
+
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
