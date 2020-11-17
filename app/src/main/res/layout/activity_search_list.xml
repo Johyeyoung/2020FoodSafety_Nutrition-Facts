@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchListActivity">
+    tools:context=".productDetail.SearchListActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-             />
+            />
 
         <Button
             android:id="@+id/button"

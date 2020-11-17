@@ -4,6 +4,128 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductDetailPage">
+    tools:context=".productDetail.ProductDetailPage">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/bback"
+                tools:layout_editor_absoluteX="-1dp"
+                tools:layout_editor_absoluteY="2dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginBottom="12dp"
+                android:background="#7e84a3" />
+
+            <ImageView
+                android:id="@+id/Notice"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="14dp"
+                app:srcCompat="@drawable/notice_a_n" />
+
+            <TextView
+                android:id="@+id/Franchise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="16dp"
+                android:textColor="#7e7e7e"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:text="STARBUCKS" />
+
+            <TextView
+                android:id="@+id/Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="14dp"
+                android:lineSpacingExtra="5sp"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:text="아이스 블론드 애플 쿠키 라떼" />
+
+            <TextView
+                android:id="@+id/NameEnglish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="3dp"
+                android:lineSpacingExtra="9sp"
+                android:textColor="#9c7e84a3"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Iced Blonde Apple Cookie Latte" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginBottom="30dp"
+                android:background="#7e84a3" />
+
+            <TextView
+                android:id="@+id/Info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="3dp"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="상품상세정보 " />
+
+
+
+            <TextView
+                android:id="@+id/Desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="24dp"
+                android:lineSpacingExtra="3sp"
+                android:textColor="#7e7e7e"
+                android:textSize="17sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="530dp"
+                tools:text="제철 사과와 커피의 달콤 쌉싸름한 만남.
+국내산 청송 사과 쿠키가 토핑이 된
+매력적인 맛의 카페 라떼를 블론드 원두
+로 즐겨보세요." />
+
+            <!-- 성분표시 부분 -->
+            <include layout="@layout/product_detail_nutrition">
+            </include>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
