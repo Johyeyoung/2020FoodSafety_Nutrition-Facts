@@ -5,79 +5,30 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     tools:context=".LoginActivity">
 
     <TextView
+
         android:id="@+id/textViewAppTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/textView"
+        android:gravity="center"
         android:text="New Facts"
-        android:gravity="center"
-        android:textSize="50dp"/>
-
-
-    <TextView
-        android:layout_marginTop="50dp"
-        android:id="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/login_linear_layout"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="이메일 회원가입" />
-    <LinearLayout
-        android:id="@+id/login_linear_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:orientation="vertical">
-
-
-        <EditText
-            android:id="@+id/editTextTextEmailAddress"
-            android:drawableLeft="@drawable/mail"
-            android:drawablePadding="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_above="@+id/editTextTextPassword"
-            android:ems="10"
-            android:hint="e-mail"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/editTextTextPassword"
-            android:drawableLeft="@drawable/lock"
-            android:drawablePadding="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:ems="10"
-            android:hint="password"
-            android:inputType="textPassword" />
-
-        <Button
-            android:id="@+id/buttonEmailSignIn"
-            android:layout_marginTop="10dp"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:text="회원가입" />
-
-    </LinearLayout>
+        android:textSize="50dp" />
 
 
     <LinearLayout
-        android:layout_below="@id/login_linear_layout"
+        android:layout_marginTop="100dp"
+        android:layout_below="@id/textViewAppTitle"
+        android:layout_gravity="center"
+        android:id="@+id/google_login_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
-            android:layout_marginTop="20dp"
+
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -89,10 +40,65 @@
             android:layout_width="350dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="10dp">
 
         </com.google.android.gms.common.SignInButton>
     </LinearLayout>
+
+    <!--    <TextView-->
+    <!--        android:layout_marginTop="50dp"-->
+    <!--        android:id="@+id/textView"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:layout_above="@+id/login_linear_layout"-->
+
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="이메일 회원가입" />-->
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/login_linear_layout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerInParent="true"-->
+    <!--        android:gravity="center"-->
+    <!--        android:orientation="vertical">-->
+
+
+    <!--        <EditText-->
+    <!--            android:id="@+id/editTextTextEmailAddress"-->
+    <!--            android:drawableLeft="@drawable/mail"-->
+    <!--            android:drawablePadding="10dp"-->
+    <!--            android:layout_marginTop="10dp"-->
+    <!--            android:layout_width="350dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_centerHorizontal="true"-->
+    <!--            android:layout_above="@+id/editTextTextPassword"-->
+    <!--            android:ems="10"-->
+    <!--            android:hint="e-mail"-->
+    <!--            android:inputType="textEmailAddress" />-->
+
+    <!--        <EditText-->
+    <!--            android:id="@+id/editTextTextPassword"-->
+    <!--            android:drawableLeft="@drawable/lock"-->
+    <!--            android:drawablePadding="10dp"-->
+    <!--            android:layout_marginTop="10dp"-->
+    <!--            android:layout_width="350dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_centerInParent="true"-->
+    <!--            android:ems="10"-->
+    <!--            android:hint="password"-->
+    <!--            android:inputType="textPassword" />-->
+
+    <!--        <Button-->
+    <!--            android:id="@+id/buttonEmailSignIn"-->
+    <!--            android:layout_marginTop="10dp"-->
+    <!--            android:layout_width="350dp"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="회원가입" />-->
+
+    <!--    </LinearLayout>-->
+
+
+
 
 
 </RelativeLayout>

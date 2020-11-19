@@ -1,4 +1,4 @@
-package com.example.newfacts;
+package com.example.newfacts.productDetail;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,12 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.newfacts.R;
 import com.example.newfacts.menu.Product;
+import com.example.newfacts.productDetail.ProductDetailPage;
 
 import java.util.ArrayList;
 
@@ -36,7 +37,7 @@ public class Myadapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
     }
 
     private ArrayList<Product> foodInfoArrayList;
-    Myadapter(ArrayList<Product> foodInfoArrayList){
+    public Myadapter(ArrayList<Product> foodInfoArrayList){
         this.foodInfoArrayList = foodInfoArrayList;
     }
 

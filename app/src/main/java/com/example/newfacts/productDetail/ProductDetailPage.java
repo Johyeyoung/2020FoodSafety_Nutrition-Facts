@@ -1,4 +1,4 @@
-package com.example.newfacts;
+package com.example.newfacts.productDetail;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.newfacts.R;
 import com.example.newfacts.menu.UserInfo;
 
 
@@ -72,8 +73,8 @@ public class ProductDetailPage extends AppCompatActivity {
 
         // 고객의 정보
         UserInfo userInfo = new UserInfo();
-        String[] custm_allergy =userInfo.allergy.split("/");
-        String[] custm_nutrition =userInfo.nutrition.split("/");
+        String[] custm_allergy =userInfo.getAllergy().split("/");
+        String[] custm_nutrition =userInfo.getNutrition().split("/");
         System.out.println(custm_allergy);
         System.out.println(custm_nutrition);
 

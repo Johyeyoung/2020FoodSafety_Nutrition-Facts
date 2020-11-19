@@ -1,4 +1,4 @@
-package com.example.newfacts;
+package com.example.newfacts.productDetail;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.newfacts.R;
 import com.example.newfacts.menu.Product;
 
 import java.io.BufferedInputStream;

@@ -66,9 +66,9 @@ public class RatingDialog extends DialogFragment implements View.OnClickListener
         }
     }
 
-    @Override
-    public void onResume() {
-        getDialog().getWindow().setLayout(950, 850);
-        super.onResume();
-    }
+//    @Override
+//    public void onResume() {
+//        getDialog().getWindow().setLayout(950, 850);
+//        super.onResume();
+//    }
 }

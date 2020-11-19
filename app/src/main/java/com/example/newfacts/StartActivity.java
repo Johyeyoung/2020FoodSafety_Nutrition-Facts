@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
+import com.example.newfacts.CustomerData.LoginActivity;
+
 public class StartActivity extends AppCompatActivity {
     Button start_button;
 

@@ -3,14 +3,12 @@ package com.example.newfacts;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -20,6 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.newfacts.menu.Product;
+import com.example.newfacts.productDetail.Myadapter;
+import com.example.newfacts.productDetail.SearchListActivity;
 
 import java.util.ArrayList;
 

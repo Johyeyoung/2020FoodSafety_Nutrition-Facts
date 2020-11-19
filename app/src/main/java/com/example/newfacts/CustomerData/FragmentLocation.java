@@ -1,4 +1,4 @@
-package com.example.newfacts;
+package com.example.newfacts.CustomerData;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -26,6 +26,10 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.newfacts.MapItem;
+import com.example.newfacts.MapItemView;
+import com.example.newfacts.R;
+import com.example.newfacts.RatingDialog;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -112,7 +116,7 @@ public class FragmentLocation extends Fragment {
 
         // 알림창 띄우기
         AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
-        b.setMessage("위생등급 데이터를 가져오기 위해 약 5초의 시간이 소요됩니다");
+        b.setMessage("위생등급 데이터를 가져오고 있습니다.");
         b.setPositiveButton("확인", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -478,7 +482,7 @@ public class FragmentLocation extends Fragment {
 
             try {
                 doc.getDocumentElement().normalize();
-                Log.d("Test_url" , url);
+             //   Log.d("Test_url" , url);
                 NodeList nodeList = doc.getElementsByTagName(doc.getDocumentElement().getNodeName());
                 //Log.d("len: ", ""+ nodeList.getLength());
                 System.out.println("Test Root element: " + doc.getDocumentElement().getNodeName());
@@ -487,17 +491,17 @@ public class FragmentLocation extends Fragment {
 
                 for (int i = 0; i < nodeList.getLength(); i++) {
                     Node node = nodeList.item(i);
-                    Log.d("Test", "for문 들어왔다");
-                    Log.d("Test_element: ", node.getNodeValue());
+//                    Log.d("Test", "for문 들어왔다");
+//                    Log.d("Test_element: ", node.getNodeValue());
                     if (node.getNodeType() == Node.ELEMENT_NODE) {
-                        Log.d("Test", "if문 들어왔다");
+                  //      Log.d("Test", "if문 들어왔다");
                         Element element = (Element) node;
 
-                        Log.d("Test", getTagValue("CODE", element));
+                    //    Log.d("Test", getTagValue("CODE", element));
                         // 위생 등급과 지정기관 result에 저장
                         if (getTagValue("CODE", element).equals("INFO-000")) {
-                            Log.d("OPEN_API", "이름: " + getTagValue("BSSH_NM", element));
-                            Log.d("OPEN_API", "위생등급: " + getTagValue("HG_ASGN_LV", element));
+//                            Log.d("OPEN_API", "이름: " + getTagValue("BSSH_NM", element));
+//                            Log.d("OPEN_API", "위생등급: " + getTagValue("HG_ASGN_LV", element));
 
                             // 주소가 같은지 비교
                             if(getTagValue("ADDR", element).contains(vicinity)){
@@ -567,7 +571,7 @@ public class FragmentLocation extends Fragment {
                     url += Integer.toString(k) + "/" + Integer.toString(k+999) + "/" +
                             "UPSO_NM=" + temp_cafe_name;
                 }
-                data = new OpenAPI("http://openapi.foodsafetykorea.go.kr/api/e740909b02604cfcb677/C004/xml/1/5/UPSO_NM=유나케이크", vicinity);
+                data = new OpenAPI(url, vicinity);
 
                 try {
                     result = data.execute().get();

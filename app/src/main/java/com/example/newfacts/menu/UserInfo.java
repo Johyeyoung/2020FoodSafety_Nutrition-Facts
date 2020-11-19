@@ -4,49 +4,50 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserInfo {
-    public String id = "";
-    public String sex = "";
-    public String age = "0";
-    public String height="0";
-    public String weight="0";
 
-    public String allergy;
-    public String nutrition;
 
-    public UserInfo(){}
+    private static final UserInfo instance = new UserInfo();
 
-    public UserInfo( String id, String sex, String age, String height, String weight, String allergy, String nutrition){
-        this.id = id;
-        this.sex = sex;
-        this.age = age;
-        this.height = height;
-        this.weight = weight;
-        this.allergy = allergy;
-        this.nutrition = nutrition;
+    public UserInfo() {
     }
 
-    public String allergyToString(boolean allergy){
-        if(allergy) return "1";
-        else return "0";
+    public static UserInfo getInstance() {
+        return instance;
     }
 
+    private String id = null;
+    private String sex = null;
+    private String age = null;
+    private String height = null;
+    private String weight = null;
 
-//    public Map<String, Object> toMap(){
-//        HashMap<String, Object> result = new HashMap<>();
-//        result.put("id", id);
-//        result.put("sex", sex);
-//        result.put("age", age);
-//        result.put("height", height);
-//        result.put("weight", weight);
-//        String allergy;
-//        allergy = allergyToString(milk_allergy)+"/"+
-//                allergyToString(soybean_allergy)+"/"+
-//                allergyToString(peach_allergy)+"/"+
-//                allergyToString(tomato_allergy)+"/"+
-//                allergyToString(squid_allergy)+"/0";
-//        result.put("allergy", allergy);
-//        return result;
+    private String allergy = null;
+    private String nutrition= null;
+
+    //    private UserInfo(String id, String sex, String age, String height, String weight, String allergy, String nutrition) {
+//        this.id = id;
+//        this.sex = sex;
+//        this.age = age;
+//        this.height = height;
+//        this.weight = weight;
+//        this.allergy = allergy;
+//        this.nutrition = nutrition;
 //    }
+    public void setId(String id){ this.id = id; }
+    public void setSex(String sex){ this.sex = sex; }
+    public void setAge(String age){ this.age = age; }
+    public void setHeight(String height){ this.height = height; }
+    public void setWeight(String weight){ this.weight = weight; }
+    public void setAllergy(String allergy){ this.allergy = allergy;}
+    public void setNutrition(String nutrition){this.nutrition = nutrition;}
 
+
+    public String getId(){return this.id;}
+    public String getSex(){return this.sex;}
+    public String getAge(){return this.age;}
+    public String getHeight(){return this.height;}
+    public String getWeight(){return this.weight;}
+    public String getAllergy(){return this.allergy;}
+    public String getNutrition(){return this.nutrition;}
 
 }
