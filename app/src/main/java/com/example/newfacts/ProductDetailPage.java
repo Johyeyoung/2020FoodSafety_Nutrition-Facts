@@ -2,9 +2,14 @@ package com.example.newfacts;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,12 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.newfacts.menu.Product;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.example.newfacts.menu.UserInfo;
+
 
 public class ProductDetailPage extends AppCompatActivity {
 
@@ -55,6 +56,11 @@ public class ProductDetailPage extends AppCompatActivity {
 
 
         // 화면 구성
+        ImageView noticeImage = (ImageView) findViewById(R.id.noticeImg);
+        ImageView ServiceImage = (ImageView) findViewById(R.id.serviceImg);
+        ServiceImage.setImageResource(R.drawable.service_info);
+
+
         // Glide로 이미지 표시하기
         ImageView ivImage = findViewById(R.id.imageView);
         Glide.with(this).load(pic).into(ivImage);
@@ -63,11 +69,18 @@ public class ProductDetailPage extends AppCompatActivity {
         TextView Name = (TextView) findViewById(R.id.Name);
         Name.setText(name);
         TextView NameEnglish = (TextView) findViewById(R.id.NameEnglish);
-        // Franchise.setText(nameEnglish);
+        NameEnglish.setText(eng);
         TextView Desc = (TextView) findViewById(R.id.Desc);
         Desc.setText(desc);
         TextView Volume = (TextView) findViewById(R.id.Volume);
         Volume.setText("총 내용량 "+ volume);
+
+
+        // 고객의 정보
+        UserInfo userInfo = new UserInfo();
+      //  String[] custm_allergy =userInfo.allergy.split("/");
+      //  String[] custm_nutrition =userInfo.nutrition.split("/");
+            String[] custm_nutrition =nutrition.split("/");
 
         // 성분표 구성 (Amount)
         Integer[] Rid_Text = {
@@ -91,6 +104,13 @@ public class ProductDetailPage extends AppCompatActivity {
         ProgressBar progress[] = new ProgressBar[6];
 
 
+        String[] allergys = allergy.split("/");
+        String[] allergy_name = {"우유", "대두", "복숭아", "오징어", "토마토", "밀"};
+        String allergy_Info = "";
+
+
+        int flag = 0; // 주의성분 사진용
+
         // 입력하기
         for(int i=0;i<=5; i++){
             nut_text[i] = (TextView) findViewById(Rid_Text[i]);
@@ -100,11 +120,33 @@ public class ProductDetailPage extends AppCompatActivity {
             int rate = Integer.parseInt(nut_kfpSsc[i])*100/total_kfpSsc[i];
             rate_text[i].setText(Integer.toString(rate)+'%');
 
+
             progress[i] = (ProgressBar) findViewById(Rid_Progress_bar[i]);
+            if(Integer.parseInt(custm_nutrition[i]) <= Integer.parseInt(nut_kfpSsc[i])){
+                progress[i].getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                flag = 1;// 성분주의마크
+            }
             progress[i].setProgress(rate);
+
+            // 알러지정보
+            if(allergys[i].equals("1")){
+                allergy_Info += (allergy_name[i]+ " ");
+                flag = (flag == 1)?3:2; // 2번은 알러지만, 3번은 성분/알러지
+            }
+
         }
 
+        TextView Allergy_Info = (TextView) findViewById(R.id.Allergy); // 알러지 정보표시
 
+        // 고객맞춤 마크표시
+        if(allergy_Info.equals("")){
+            Allergy_Info.setText("  없음");
+        }
+        Allergy_Info.setText(allergy_Info);
+        Integer[] Rid_noticeImage = {R.drawable.notice_n, R.drawable.notice_a, R.drawable.notice_n_a};
+        if(flag != 0){
+            noticeImage.setImageResource(Rid_noticeImage[flag-1]);
+        }
 
 
 

@@ -37,6 +37,7 @@
             android:layout_marginEnd="94dp"
             android:layout_marginRight="94dp"
             android:layout_weight="1"
+            android:hint = "검색결과입니다."
             android:ems="10"
             android:inputType="textPersonName"
              />
@@ -53,16 +54,21 @@
             android:layout_marginRight="21dp"
             android:text="검색" />
 
-        <ListView
-            android:id="@+id/product_select_view"
+<!--        <ListView-->
+<!--            android:id="@+id/product_select_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="613dp"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_marginBottom="2dp"-->
+<!--            tools:layout_editor_absoluteX="6dp"-->
+<!--            tools:layout_editor_absoluteY="122dp" >-->
+<!--        </ListView>-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id = "@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="613dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="2dp"
-            tools:layout_editor_absoluteX="6dp"
-            tools:layout_editor_absoluteY="122dp" >
-
-        </ListView>
+            android:layout_alignParentBottom="true" />
         <TextView
             android:id = "@+id/empty_text"
             android:layout_width="match_parent"
@@ -72,11 +78,9 @@
             android:visibility="gone">
         </TextView>
 
-        <ProgressBar
-            android:id="@+id/progressBar2"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+
+
+
 
 
     </RelativeLayout>

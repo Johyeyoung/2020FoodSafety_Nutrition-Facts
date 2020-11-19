@@ -33,6 +33,11 @@ public class Product implements Parcelable{
         this.volume = volume;
     }
     public Product(){}
+    public Product(String franchise, String name, String pic){
+        this.franchise = franchise;
+        this.name = name;
+        this.pic = pic;
+    }
 
     public Product(Parcel in) {
         franchise = in.readString();

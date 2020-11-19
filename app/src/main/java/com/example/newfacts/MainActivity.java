@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity{
     private FragmentCategory fragmentCategory = new FragmentCategory();
     private FragmentLocation fragmentLocation = new FragmentLocation();
     private FragmentMyinfo fragmentMyinfo = new FragmentMyinfo();
-    private FragmentHealthInfo fragmentHealthInfo = new FragmentHealthInfo();
+//    private FragmentHealthInfo fragmentHealthInfo = new FragmentHealthInfo();
 
 
 
@@ -71,12 +71,12 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-  // 민정이꺼
-    public void onFragmentChange(int index){
-        if(index ==0){
-            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragmentHealthInfo).commit();
-        }
-    }
+//  // 민정이꺼
+//    public void onFragmentChange(int index){
+//        if(index ==0){
+//            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragmentHealthInfo).commit();
+//        }
+//    }
 
 
 }

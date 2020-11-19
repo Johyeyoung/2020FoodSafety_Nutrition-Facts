@@ -24,13 +24,27 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="408dp"
+                android:layout_width="match_parent"
                 android:layout_height="327dp"
                 app:srcCompat="@drawable/bback"
                 tools:layout_editor_absoluteX="-1dp"
                 tools:layout_editor_absoluteY="2dp" />
-
-
+            <ImageView
+                android:id="@+id/noticeImg"
+                android:layout_width="120dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="14dp"
+                tools:layout_editor_absoluteX="-1dp"
+                tools:layout_editor_absoluteY="2dp" />
+            <ImageView
+                android:id="@+id/serviceImg"
+                android:layout_width="120dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="14dp"
+                tools:layout_editor_absoluteX="-1dp"
+                tools:layout_editor_absoluteY="2dp" />
 
 
             <TextView

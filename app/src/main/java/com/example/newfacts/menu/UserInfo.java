@@ -1,4 +1,4 @@
-package com.example.newfacts;
+package com.example.newfacts.menu;
 
 import java.util.HashMap;
 import java.util.Map;

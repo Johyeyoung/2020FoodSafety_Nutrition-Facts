@@ -2,6 +2,8 @@ package com.example.newfacts;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,6 +39,7 @@ public class SearchListActivity extends AppCompatActivity {
         EditText srch_content = (EditText)findViewById(R.id.srch_content);
         srch_content.setText(srch_word);
 
+
         // 1. Button Action 처리
         Button back_button =(Button)findViewById(R.id.back_button);
         back_button.setOnClickListener(new View.OnClickListener() {
@@ -48,10 +51,17 @@ public class SearchListActivity extends AppCompatActivity {
         });
 
 
-        // 2. List view 처리 (empty_textView를 이용하여 검색결과 없을 때 표시)
-        final ListView listView = findViewById(R.id.product_select_view);
-        final TextView empty_textView = findViewById(R.id.empty_text);
-        listView.setEmptyView(empty_textView);
+//        // 2. List view 처리 (empty_textView를 이용하여 검색결과 없을 때 표시)
+//        final ListView listView = findViewById(R.id.product_select_view);
+//        final TextView empty_textView = findViewById(R.id.empty_text);
+//        listView.setEmptyView(empty_textView);
+//        final ArrayList<Product> data = new ArrayList<>();
+
+
+        // 2. 리사이클러뷰 처리
+        final RecyclerView mRecyclerView = findViewById(R.id.recycler_view);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
         final ArrayList<Product> data = new ArrayList<>();
 
 
@@ -68,24 +78,41 @@ public class SearchListActivity extends AppCompatActivity {
                     product.setKey(datasnapshot.getKey());
 
 
-
-
-
                     // 3-1. 이름으로 데이터 조회 (띄어쓰기 제거)
-                    String name = product.getName().replaceAll(" ", "");
-                    if(name.contains(srch_word.replaceAll(" ", ""))){
-                        data.add(product);
+                    if(srch_word.contains("/")){
+                        String[] srch_nutrition = srch_word.split("/");
+                        String[] nutrition = product.getNutrition().split("/");
+                        int flag = 0;
+                        for(int i = 0;i<6; i++){
+                            if(Integer.parseInt(nutrition[i]) > Integer.parseInt(srch_nutrition[i])){
+                                flag = 1;
+                                break; }
+                        }
+                       if(flag == 0){ data.add(product);
+                       }
                     }
-                    else{  // 3-2. 이름이 일치하지 않으면 상호명으로 조회
-                        String franchiseName = product.getFranchise().replaceAll(" ", "");
-                        if(srch_word.replaceAll(" ", "").contains(franchiseName)){
+                    else{
+                        String name = product.getName().replaceAll(" ", "");
+                        if(name.contains(srch_word.replaceAll(" ", ""))){
                             data.add(product);
                         }
+                        else{  // 3-2. 이름이 일치하지 않으면 상호명으로 조회
+                            String franchiseName = product.getFranchise().replaceAll(" ", "");
+                            if(srch_word.replaceAll(" ", "").contains(franchiseName)){
+                                data.add(product);
+                            }
+                        }
                     }
+
+
+
                 }
 
-                final ProductAdapter adapter = new ProductAdapter(data);
-                listView.setAdapter(adapter);
+//                final ProductAdapter adapter = new ProductAdapter(data);
+//                listView.setAdapter(adapter);
+                final Myadapter adapter = new Myadapter(data);
+                mRecyclerView.setAdapter(adapter);
+
             }
 
             @Override
@@ -98,19 +125,19 @@ public class SearchListActivity extends AppCompatActivity {
 
 
 
-        // 4. 아이템을 클릭하면 상세정보 페이지로
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println(parent.getItemAtPosition(position).toString());
-                Intent intent = new Intent(SearchListActivity.this, ProductDetailPage.class);
-                intent.putExtra("detail", parent.getItemAtPosition(position).toString());  // 검색어 전달 (스타벅스/나이트로 콜드 브루/임시)
-                startActivity(intent);
-
-
-
-            }
-        });
+//        // 4. 아이템을 클릭하면 상세정보 페이지로
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                System.out.println(parent.getItemAtPosition(position).toString());
+//                Intent intent = new Intent(SearchListActivity.this, ProductDetailPage.class);
+//                intent.putExtra("detail", parent.getItemAtPosition(position).toString());  // 검색어 전달 (스타벅스/나이트로 콜드 브루/임시)
+//                startActivity(intent);
+//
+//
+//
+//            }
+//        });
 
 
     }
