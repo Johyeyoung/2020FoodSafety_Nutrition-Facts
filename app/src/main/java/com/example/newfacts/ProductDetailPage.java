@@ -1,20 +1,14 @@
 package com.example.newfacts;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.newfacts.menu.UserInfo;
@@ -78,9 +72,12 @@ public class ProductDetailPage extends AppCompatActivity {
 
         // 고객의 정보
         UserInfo userInfo = new UserInfo();
-      //  String[] custm_allergy =userInfo.allergy.split("/");
-      //  String[] custm_nutrition =userInfo.nutrition.split("/");
-            String[] custm_nutrition =nutrition.split("/");
+        String[] custm_allergy =userInfo.allergy.split("/");
+        String[] custm_nutrition =userInfo.nutrition.split("/");
+        System.out.println(custm_allergy);
+        System.out.println(custm_nutrition);
+
+        // String[] custm_nutrition =nutrition.split("/");
 
         // 성분표 구성 (Amount)
         Integer[] Rid_Text = {
@@ -122,7 +119,7 @@ public class ProductDetailPage extends AppCompatActivity {
 
 
             progress[i] = (ProgressBar) findViewById(Rid_Progress_bar[i]);
-            if(Integer.parseInt(custm_nutrition[i]) <= Integer.parseInt(nut_kfpSsc[i])){
+            if(Integer.parseInt(custm_nutrition[i]) < Integer.parseInt(nut_kfpSsc[i])){
                 progress[i].getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
                 flag = 1;// 성분주의마크
             }
