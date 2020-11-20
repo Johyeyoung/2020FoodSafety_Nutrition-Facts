@@ -1,4 +1,4 @@
-package com.example.newfacts;
+package com.newfact.newfacts;
 
 import android.content.Context;
 import android.util.AttributeSet;

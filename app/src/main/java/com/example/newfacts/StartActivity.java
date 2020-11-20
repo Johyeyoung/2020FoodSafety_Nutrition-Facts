@@ -1,4 +1,4 @@
-package com.example.newfacts;
+package com.newfact.newfacts;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+
+import com.newfact.newfacts.CustomerData.LoginActivity;
 
 public class StartActivity extends AppCompatActivity {
     Button start_button;

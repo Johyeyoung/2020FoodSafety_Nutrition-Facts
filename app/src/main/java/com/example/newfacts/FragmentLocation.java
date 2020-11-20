@@ -1,21 +1,7 @@
-package com.example.newfacts;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
+package com.newfact.newfacts;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -23,17 +9,22 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.newfact.newfacts.R;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -53,7 +44,6 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -67,7 +57,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import static android.content.Context.LOCATION_SERVICE;
-import static androidx.core.content.ContextCompat.getSystemService;
 
 public class FragmentLocation extends Fragment {
     String[] permission_list = {
@@ -82,12 +71,13 @@ public class FragmentLocation extends Fragment {
     ArrayList<String> name_lst = new ArrayList<String>();
     ArrayList<String> vicinity_lst = new ArrayList<String>();
     ArrayList<Marker> marker_lst = new ArrayList<Marker>();
+    ArrayList<MapItem> item_lst = new ArrayList<MapItem>();
 
     ListView listView;
     MyAdapter adapter;
     Location currentLocation;
     Location cafeLocation;
-    ActionBar actionBar;
+    android.app.ActionBar actionBar;
     View header;
     androidx.appcompat.widget.AppCompatTextView title_bar;
 
@@ -97,38 +87,47 @@ public class FragmentLocation extends Fragment {
     boolean isRunning = false;
 
     DisplayImgHandler handler;
+    RatingDialog dialog;
+    SetImgThread setImgThread;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_location, container, false);
-        //return inflater.inflate(R.layout.fragment_location, container, false);
-        // custom title_bar
-        //actionBar.setTitle("주변 매장 정보 ");
-        //actionBar = getSupportActionBar();
-//        actionBar.setDisplayShowCustomEnabled(false);
-//        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-//        actionBar.setCustomView(R.layout.bar_layout);
 
-        header = getLayoutInflater().inflate(R.layout.bar_layout, null, false);
-        title_bar = header.findViewById(R.id.custom_bar);
-        title_bar.setText("주변 매장 정보");
+        // custom title_bar
+//        actionBar.setTitle("주변 매장 정보 ");
+//        actionBar = getActivity().getActionBar();
+//        actionBar.setDisplayShowCustomEnabled(false);
+//        actionBar.setDisplayOptions(actionBar.DISPLAY_SHOW_CUSTOM);
+//        actionBar.setCustomView(R.layout.bar_layout);
+//
+//        header = getLayoutInflater().inflate(R.layout.bar_layout, null, false);
+//        title_bar = header.findViewById(R.id.custom_bar);
+//        title_bar.setText("주변 매장 정보");
 
         listView = (ListView) v.findViewById(R.id.listview);
         adapter = new MyAdapter();
         handler = new DisplayImgHandler();
 
+        // 알림창 띄우기
+        AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
+        b.setMessage("위생등급 데이터를 가져오고 있습니다.");
+        b.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
 
+            }
+        });
+
+        AlertDialog alertDialog = b.create();
+        alertDialog.show();
+
+        // 권환 요청 및 구글 api 받아오기
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(permission_list, 0);
         } else {
             init();
         }
-
-        // 어댑터에 담긴 아이템의 위생 등급을 가져오기 위한 스레드 작동
-//        SetImgThread thread = new SetImgThread();
-//        thread.start();
-
-
 
         return v;
     }
@@ -143,8 +142,6 @@ public class FragmentLocation extends Fragment {
             }
         }
         init();
-//        MapThread thread = new MapThread();
-//        thread.start();
     }
 
     public void init() {
@@ -152,17 +149,6 @@ public class FragmentLocation extends Fragment {
         SupportMapFragment mapFragment = (SupportMapFragment) fragmentManager.findFragmentById(R.id.map);
         MapReadyCallback callback1 = new MapReadyCallback();
         mapFragment.getMapAsync(callback1);
-    }
-
-    class MapThread extends Thread {
-        @Override
-        public void run() {
-            super.run();
-            if (isRunning) {
-                init();
-            }
-
-        }
     }
 
 
@@ -211,14 +197,15 @@ public class FragmentLocation extends Fragment {
     }
 
     public void setMyLocation(Location location) {
-        Log.d("test123", "위도: " + location.getLatitude());
-        Log.d("test123", "경도: " + location.getLongitude());
+
         currentLocation = new Location("current");
         currentLocation.setLatitude(location.getLatitude());
         currentLocation.setLongitude(location.getLongitude());
+//        Log.d("test123", "위도: " + currentLocation.getLatitude());
+//        Log.d("test123", "경도: " + currentLocation.getLongitude());
 
         // 위도와 경도값을 관리하는 객체
-        LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
+        LatLng position = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
         CameraUpdate update1 = CameraUpdateFactory.newLatLng(position);
         CameraUpdate update2 = CameraUpdateFactory.zoomTo(15f);
         map.moveCamera(update1);
@@ -236,12 +223,6 @@ public class FragmentLocation extends Fragment {
             }
 
         }
-//
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            if (requestPermissions(permission_list, PackageManager.PERMISSION_DENIED));
-//             return;
-//            }
-//        }
 
         // 현재 위치 표시
         map.setMyLocationEnabled(true);
@@ -254,7 +235,7 @@ public class FragmentLocation extends Fragment {
     class GetMyLocationListener implements LocationListener {
         @Override
         public void onLocationChanged(@NonNull Location location) {
-            setMyLocation(location);
+            //setMyLocation(location);
             locationManager.removeUpdates(this);
         }
 
@@ -293,7 +274,7 @@ public class FragmentLocation extends Fragment {
             String site = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
                     + "?key=AIzaSyDJ0mbhei8kzTawEdyKLL1uZLE4QPMCwUs"
                     + "&location=" + lat + "," + lng
-                    + "&radius=1000"
+                    + "&radius=800"
                     + "&language=ko"
                     + "&type=cafe";
             //Log.d("test123", "주소 : " + site);
@@ -317,7 +298,7 @@ public class FragmentLocation extends Fragment {
         public void onResponse(Call call, Response response) throws IOException {
             try {
                 String result = response.body().string();
-                //Log.d("test123", result);
+                //("test123", result);
 
                 JSONObject obj = new JSONObject(result);
 
@@ -344,16 +325,14 @@ public class FragmentLocation extends Fragment {
                         name_lst.add(name);
                         vicinity_lst.add(vicinity);
 
-                        if (i == 15) break;
-
                     }
 
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             float distance = 0;
-                            SetImgThread setImgThread;
                             MapItem item;
+                            isRunning = true;
                             cafeLocation = new Location("cafe");
                             // 지도에 표시되어있는 마커 제거
                             for (Marker marker : marker_lst) {
@@ -389,26 +368,18 @@ public class FragmentLocation extends Fragment {
 
                                 // 잘못된 정보 거르기
                                 if (0 < name3.length() && name3.length() < 20) {
-                                    // 아이템 전달 -> 해당 카페가 위생 등급 정보가 있는지 확인
-                                    //try {
+                                    // 주변 정보 담아서 listview에 보이기
                                     item = new MapItem(name3, String.format("%.2f", distance) + " m");
+                                    setImgThread = new SetImgThread(item, vicinity3);
+                                    //Log.d("Test", vicinity3);
+                                    setImgThread.start();
                                     adapter.addItem(item);
-
-
-//                                    } catch (ExecutionException e) {
-//                                        e.printStackTrace();
-//                                    } catch (InterruptedException e) {
-//                                        e.printStackTrace();
-//                                    }
+                                    listView.setAdapter(adapter);
 
                                 }
                             }
-                            isRunning = true;
-                            setImgThread = new SetImgThread();
-                            setImgThread.start();
+
                             listView.setAdapter(adapter);
-//                            for(int i = 0; i < adapter.getCount(); i++)
-//                            Log.d("item: ", adapter.getItem(i).toString());
                         }
                     });
                 }
@@ -465,18 +436,23 @@ public class FragmentLocation extends Fragment {
         public void onClick(View v) {
             int pos = (Integer) v.getTag();
             MapItem item = (MapItem) getItem(pos);
-            Toast.makeText(getActivity().getApplicationContext(), item.getCafe_name(), Toast.LENGTH_SHORT).show();
+
             // 아이템 목록 클릭 시
+            dialog = new RatingDialog(item.getCafe_name(), item.getDistance(), item.getAssign(), item.getRating());
+            dialog.show(getActivity().getSupportFragmentManager(), "tag");
 
 
         }
     }
 
+    // 식품안전나라에서 open api 정보 가져오기
     class OpenAPI extends AsyncTask<Void, Void, String> {
         String url;
+        String vicinity;
 
-        OpenAPI(String url) {
+        OpenAPI(String url, String vicinity) {
             this.url = url;
+            this.vicinity = vicinity;
         }
 
         @Override
@@ -501,31 +477,44 @@ public class FragmentLocation extends Fragment {
 
             try {
                 doc.getDocumentElement().normalize();
-
+             //   Log.d("Test_url" , url);
                 NodeList nodeList = doc.getElementsByTagName(doc.getDocumentElement().getNodeName());
                 //Log.d("len: ", ""+ nodeList.getLength());
+                System.out.println("Test Root element: " + doc.getDocumentElement().getNodeName());
+//                Node node = nodeList.item(1);
+//                Log.d("Test_element: ", node.getNodeValue());
 
                 for (int i = 0; i < nodeList.getLength(); i++) {
                     Node node = nodeList.item(i);
+//                    Log.d("Test", "for문 들어왔다");
+//                    Log.d("Test_element: ", node.getNodeValue());
                     if (node.getNodeType() == Node.ELEMENT_NODE) {
+                  //      Log.d("Test", "if문 들어왔다");
                         Element element = (Element) node;
-                        // 위생 등급에 따라 이미지 노출
+
+                    //    Log.d("Test", getTagValue("CODE", element));
+                        // 위생 등급과 지정기관 result에 저장
                         if (getTagValue("CODE", element).equals("INFO-000")) {
 //                            Log.d("OPEN_API", "이름: " + getTagValue("BSSH_NM", element));
 //                            Log.d("OPEN_API", "위생등급: " + getTagValue("HG_ASGN_LV", element));
-                            result = getTagValue("HG_ASGN_LV", element);
-                            result += ","+ getTagValue("HG_ASGN_NM", element);
+
+                            // 주소가 같은지 비교
+                            if(getTagValue("ADDR", element).contains(vicinity)){
+                                result = getTagValue("HG_ASGN_LV", element);
+                                result += ","+ getTagValue("HG_ASGN_NM", element);
+                            }
                         }
 
                     }
+//                    if(result.length() > 1) {
+//                        break;
+//                    }
                 }
             }
             // 위생등급 데이터가 없는 경우
             catch (Exception e) {
                 //Log.d("ds", "null");
             }
-
-            //System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
             return result;
         }
 
@@ -545,49 +534,88 @@ public class FragmentLocation extends Fragment {
     }
 
     // open api 에서 위생 등급과 지정 기관 받아오는 스레드
-   class SetImgThread extends Thread{
+    class SetImgThread extends Thread{
         MapItem item;
+        String vicinity;
 
-//        SetImgThread(MapItem item){
-//            this.item = item;
-//        }
+        SetImgThread(MapItem item, String vicinity){
+            this.item = item;
+            this.vicinity = vicinity;
+        }
 
         @Override
         public void run() {
             super.run();
-                String result = "";
-                OpenAPI data = null;
-                MapItem item;
-                url = "http://openapi.foodsafetykorea.go.kr/api/e740909b02604cfcb677/C004/xml/1/5";
+            String result = "";
+            OpenAPI data = null;
+            String temp_cafe_name = "";
 
-                while(isRunning){
-                if(name_lst.size() > 0){
-                    for(int i=0; i < name_lst.size(); i++){
-                        item = (MapItem) adapter.getItem(i);
-                        url += "/UPSO_NM=" + name_lst.get(i);
-                        //Log.d("Test", name_lst.get(i));
-                        data = new OpenAPI(url);
-                        try {
-                            result = data.execute().get();
-                        } catch (ExecutionException e) {
-                            e.printStackTrace();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-
-                        Message msg1 = handler.obtainMessage();
-                        msg1.what = 0;
-                        msg1.obj = item;
-                        handler.sendMessage(msg1);
-
-                        Message msg2 = handler.obtainMessage();
-                        msg2.what = 1;
-                        msg2.obj = result;
-                        handler.sendMessage(msg2);
-                    }
-                }
+            if(item.getCafe_name().contains(" ")){
+                temp_cafe_name = item.getCafe_name().split(" ")[0];
             }
-                Log.d("Test", "Thread_result: " + result);
+            else{
+                temp_cafe_name = item.getCafe_name();
+            }
+
+            for(int k = 1; k < 13000; k += 1000){
+                url = "http://openapi.foodsafetykorea.go.kr/api/e740909b02604cfcb677/C004/xml/";
+                if(k == 12001){
+                    url += Integer.toString(k) + "/" + Integer.toString(12400) + "/" +
+                            "UPSO_NM=" + temp_cafe_name;
+                }else{
+                    url += Integer.toString(k) + "/" + Integer.toString(k+999) + "/" +
+                            "UPSO_NM=" + temp_cafe_name;
+                }
+                data = new OpenAPI(url, vicinity);
+
+                try {
+                    result = data.execute().get();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                if(result.length() != 0){
+                    rating = result.split(",")[0];
+                    assign = result.split(",")[1];
+                }
+                else{
+                    rating = "";
+                    assign = "";
+                }
+
+                if (result.length() == 0) {
+                    item.setResId(R.drawable.null_space);
+                    item.setAssign("데이터가 없습니다.");
+                    item.setRating("데이터가 없습니다.");
+                }
+                else if (result.contains("우수") || result.contains("좋음")){
+                    item.setResId(R.drawable.green_place);
+                    item.setAssign(assign);
+                    item.setRating(rating);
+                }
+                else{
+                    item.setResId(R.drawable.red_place);
+                    item.setAssign(assign);
+                    item.setRating(rating);
+                }
+                //Log.d("Test", item.getCafe_name() + " , "  + item.getAssign());
+
+                Message msg1 = handler.obtainMessage();
+                msg1.what = 0;
+                msg1.obj = item;
+                handler.sendMessage(msg1);
+
+                Message msg2 = handler.obtainMessage();
+                msg2.what = 1;
+                msg2.obj = result;
+                handler.sendMessage(msg2);
+
+//                    if(result.length() > 1) break;
+            }
+
+            //Log.d("Test", "Thread_result: " + result);
 
 
         }
@@ -608,30 +636,47 @@ public class FragmentLocation extends Fragment {
                     break;
                 case 1:
                     String result = (String) msg.obj;
-                     if(result.length() != 0){
-                         rating = result.split(",")[0];
-                         assign = result.split(",")[1];
-                     }
-                     else{
-                         rating = "";
-                         assign = "";
-                     }
+                    if(result.length() != 0){
+                        rating = result.split(",")[0];
+                        assign = result.split(",")[1];
+                    }
+                    else{
+                        rating = "";
+                        assign = "";
+                    }
 
 //                     Log.d("Test", "Handler_rating: " + rating);
 //                     Log.d("Test", "Handler_assign: " + assign);
-                     //Log.d("Test", "Item.name" + item.getCafe_name());
-                    if (result.length() == 0) item.setResId(R.drawable.null_space);
-                    else if (result.contains("우수") || result.contains("좋음")) item.setResId(R.drawable.green_place);
-                    else item.setResId(R.drawable.red_place);
-                    //listView.setAdapter(adapter);
+                    //Log.d("Test", "Item.name" + item.getCafe_name());
+                    if (result.length() == 0) {
+                        item.setResId(R.drawable.null_space);
+                        item.setAssign("데이터가 없습니다.");
+                        item.setRating("데이터가 없습니다.");
+                    }
+                    else if (result.contains("우수") || result.contains("좋음")){
+                        item.setResId(R.drawable.green_place);
+                        item.setAssign(assign);
+                        item.setRating(rating);
+                    }
+                    else{
+                        item.setResId(R.drawable.red_place);
+                        item.setAssign(assign);
+                        item.setRating(rating);
+                    }
+
                     break;
             }
+            adapter.notifyDataSetChanged();
+            //listView.setAdapter(adapter);
         }
     }
 
+
+    // setImgThread 종료
     @Override
     public void onDestroy() {
         super.onDestroy();
         isRunning = false;
     }
+
 }
