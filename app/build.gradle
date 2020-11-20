@@ -5,7 +5,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.newfacts"
+        applicationId "com.newfact.newfacts"
 
         minSdkVersion 16
 

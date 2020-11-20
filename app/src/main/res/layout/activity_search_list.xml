@@ -5,13 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".productDetail.SearchListActivity">
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="41dp">
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="41dp">
 
         <Button
             android:id="@+id/back_button"
@@ -45,7 +48,7 @@
         <Button
             android:id="@+id/button"
             android:layout_width="68dp"
-            android:layout_height="33dp"
+            android:layout_height="43dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
@@ -63,7 +66,7 @@
 <!--            tools:layout_editor_absoluteX="6dp"-->
 <!--            tools:layout_editor_absoluteY="122dp" >-->
 <!--        </ListView>-->
-
+        </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id = "@+id/recycler_view"
             android:layout_width="match_parent"
@@ -83,6 +86,6 @@
 
 
 
-    </RelativeLayout>
 
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
