@@ -5,30 +5,30 @@
     <item
         android:id="@+id/Main"
         app:showAsAction="always"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/ic_baseline_home_24"
         android:enabled="true"
         android:checked="true"
-        android:title="Search" />
+        android:title="Home" />
     <item
         android:id="@+id/Category"
         app:showAsAction="always"
-        android:icon="@android:drawable/ic_menu_camera"
+        android:icon="@drawable/ic_baseline_view_headline_24"
         android:enabled="true"
         android:checked="true"
-        android:title="Camera" />
+        android:title="Category" />
     <item
         android:id="@+id/Location"
         app:showAsAction="always"
-        android:icon="@android:drawable/ic_menu_call"
+        android:icon="@drawable/ic_baseline_room_24"
         android:enabled="true"
         android:checked="true"
-        android:title="Call" />
+        android:title="Location" />
     <item
         android:id="@+id/MyInfo"
-        app:showAsAction="always"
-        android:icon="@android:drawable/ic_menu_call"
-        android:enabled="true"
         android:checked="true"
-        android:title="Call" />
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_perm_identity_24"
+        android:title="My Page"
+        app:showAsAction="always" />
 
 </menu>

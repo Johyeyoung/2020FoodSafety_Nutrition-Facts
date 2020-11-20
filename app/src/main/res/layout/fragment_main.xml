@@ -5,232 +5,94 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/srch_content"
-            android:layout_width="274dp"
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="33dp"
-            android:layout_marginEnd="96dp"
-            android:layout_marginRight="96dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="메뉴 또는 상호명을 입력해주세요."
-            android:inputType="textPersonName" />
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <EditText
+                android:id="@+id/srch_content"
+                android:layout_width="274dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="33dp"
+                android:layout_marginEnd="96dp"
+                android:layout_marginRight="96dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="메뉴 또는 상호명을 입력해주세요."
+                android:inputType="textPersonName" />
 
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="68dp"
-            android:layout_height="33dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="41dp"
-            android:layout_marginEnd="21dp"
-            android:layout_marginRight="21dp"
-            android:text="검색" />
+            <Button
+                android:id="@+id/button"
+                android:layout_width="68dp"
+                android:layout_height="43dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="41dp"
+                android:layout_marginEnd="21dp"
+                android:layout_marginRight="21dp"
+                android:text="검색" />
+
+        </RelativeLayout>
+        <!-- 성분표시 부분 -->
+        <include layout="@layout/nutrition_seekbar"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:layout_marginTop="27dp"
+            >
 
 
-        <SeekBar
-            android:id="@+id/seekBar1"
-            android:layout_width="193dp"
-            android:layout_height="19dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="200dp"
-            android:layout_marginEnd="108dp"
-            android:layout_marginRight="108dp"
-            tools:layout_editor_absoluteX="114dp"
-            tools:layout_editor_absoluteY="240dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:lineSpacingExtra="11sp"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:text="뉴팩님을 위한 추천" />
 
-        <SeekBar
-            android:id="@+id/seekBar2"
-            android:layout_width="193dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="225dp"
-            android:layout_marginEnd="109dp"
-            android:layout_marginRight="109dp"
-            tools:layout_editor_absoluteX="114dp"
-            tools:layout_editor_absoluteY="240dp" />
-
-        <SeekBar
-            android:id="@+id/seekBar3"
-            android:layout_width="193dp"
-            android:layout_height="19dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="248dp"
-            android:layout_marginEnd="107dp"
-            android:layout_marginRight="107dp"
-            tools:layout_editor_absoluteX="114dp"
-            tools:layout_editor_absoluteY="240dp" />
-
-        <SeekBar
-            android:id="@+id/seekBar4"
-            android:layout_width="193dp"
-            android:layout_height="19dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="273dp"
-            android:layout_marginEnd="107dp"
-            android:layout_marginRight="107dp"
-            tools:layout_editor_absoluteX="114dp"
-            tools:layout_editor_absoluteY="240dp" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="58dp"
-            android:layout_marginLeft="58dp"
-            android:layout_marginTop="201dp"
-            android:text="칼로리" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="74dp"
-            android:layout_marginLeft="74dp"
-            android:layout_marginTop="222dp"
-            android:text="당류" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="63dp"
-            android:layout_marginLeft="63dp"
-            android:layout_marginTop="273dp"
-            android:text="나트륨" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="63dp"
-            android:layout_marginLeft="63dp"
-            android:layout_marginTop="246dp"
-            android:text="카페인" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="89dp"
-            android:text="최근 검색어" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="35dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="163dp"
-            android:text="설정 검색" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="125dp"
-            android:layout_height="36dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="266dp"
-            android:layout_marginLeft="266dp"
-            android:layout_marginTop="155dp"
-            android:text="성분으로 검색" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="201dp"
-            android:layout_marginEnd="43dp"
-            android:layout_marginRight="43dp"
-            android:text="1000Kcal" />
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="223dp"
-            android:layout_marginEnd="70dp"
-            android:layout_marginRight="70dp"
-            android:text="100g" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="244dp"
-            android:layout_marginEnd="58dp"
-            android:layout_marginRight="58dp"
-            android:text="100mg" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="266dp"
-            android:layout_marginEnd="78dp"
-            android:layout_marginRight="78dp"
-            android:text="50g" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="51dp"
+                android:background="#7e84a3" />
 
 
-    </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_recommend"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constrainedHeight="true"/>
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

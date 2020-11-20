@@ -25,24 +25,27 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="400dp"
                 app:srcCompat="@drawable/bback"
                 tools:layout_editor_absoluteX="-1dp"
                 tools:layout_editor_absoluteY="2dp" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginBottom="12dp"
-                android:background="#7e84a3" />
-
             <ImageView
-                android:id="@+id/Notice"
-                android:layout_width="200dp"
-                android:layout_height="45dp"
+                android:id="@+id/noticeImg"
+                android:layout_width="160dp"
+                android:layout_height="30dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="14dp"
-                app:srcCompat="@drawable/notice_a_n" />
+                app:srcCompat="@drawable/notice_n_a" />
+            <ImageView
+                android:id="@+id/serviceImg"
+                android:layout_width="210dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="14dp"
+                app:srcCompat="@drawable/service_info"
+                 />
+
 
             <TextView
                 android:id="@+id/Franchise"
