@@ -1,4 +1,4 @@
-package com.example.newfacts;
+package com.newfact.newfacts.productDetail;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,15 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import com.example.newfacts.menu.Product;
+import com.newfact.newfacts.MainActivity;
+import com.newfact.newfacts.R;
+import com.newfact.newfacts.menu.Product;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,8 +34,19 @@ public class SearchListActivity extends AppCompatActivity {
         // 0. 전달된 검색어 받기
         Intent intent = getIntent();
         srch_word = intent.getExtras().getString("content");
-        EditText srch_content = (EditText)findViewById(R.id.srch_content);
+        final EditText srch_content = (EditText)findViewById(R.id.srch_content);
         srch_content.setText(srch_word);
+        if(srch_word.contains("/")){
+            srch_content.setText(""); }
+        else srch_content.setText(srch_word);
+        srch_content.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus) {
+                    srch_content.setText("");
+                }
+            }
+        });
 
 
         // 1. Button Action 처리
@@ -76,7 +85,7 @@ public class SearchListActivity extends AppCompatActivity {
                 for (DataSnapshot datasnapshot : snapshot.getChildren()) {
                     Product product = datasnapshot.getValue(Product.class);
                     product.setKey(datasnapshot.getKey());
-
+                    System.out.println(product.toString());
 
                     // 3-1. 이름으로 데이터 조회 (띄어쓰기 제거)
                     if(srch_word.contains("/")){

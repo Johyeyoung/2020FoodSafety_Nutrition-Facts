@@ -1,4 +1,4 @@
-package com.example.newfacts;
+package com.newfact.newfacts.productDetail;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,7 +11,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.example.newfacts.menu.UserInfo;
+import com.newfact.newfacts.R;
+import com.newfact.newfacts.menu.UserInfo;
 
 
 public class ProductDetailPage extends AppCompatActivity {
@@ -71,11 +72,14 @@ public class ProductDetailPage extends AppCompatActivity {
 
 
         // 고객의 정보
-        UserInfo userInfo = new UserInfo();
-        String[] custm_allergy =userInfo.allergy.split("/");
-        String[] custm_nutrition =userInfo.nutrition.split("/");
-        System.out.println(custm_allergy);
-        System.out.println(custm_nutrition);
+        String[] custm_allergy = new String[6];
+        String[] custm_nutrition = new String[6];
+        UserInfo userInfo = UserInfo.getInstance();
+        if(userInfo.getAllergy()!= null){
+            custm_allergy =userInfo.getAllergy().split("/"); }
+        if(userInfo.getNutrition()!= null){
+            custm_nutrition =userInfo.getNutrition().split("/"); }
+
 
         // String[] custm_nutrition =nutrition.split("/");
 
@@ -107,7 +111,7 @@ public class ProductDetailPage extends AppCompatActivity {
 
 
         int flag = 0; // 주의성분 사진용
-
+        int maxflag = 0;
         // 입력하기
         for(int i=0;i<=5; i++){
             nut_text[i] = (TextView) findViewById(Rid_Text[i]);
@@ -119,16 +123,21 @@ public class ProductDetailPage extends AppCompatActivity {
 
 
             progress[i] = (ProgressBar) findViewById(Rid_Progress_bar[i]);
-            if(Integer.parseInt(custm_nutrition[i]) < Integer.parseInt(nut_kfpSsc[i])){
-                progress[i].getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-                flag = 1;// 성분주의마크
+            System.out.println(userInfo.getNutrition());
+            if(userInfo.getNutrition()!=null){
+                if(Integer.parseInt(custm_nutrition[i]) < Integer.parseInt(nut_kfpSsc[i])){
+                    progress[i].getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                    flag = 1;// 성분주의마크
+                }
             }
+
             progress[i].setProgress(rate);
 
             // 알러지정보
             if(allergys[i].equals("1")){
                 allergy_Info += (allergy_name[i]+ " ");
                 flag = (flag == 1)?3:2; // 2번은 알러지만, 3번은 성분/알러지
+                if(maxflag <= flag){maxflag = flag;}
             }
 
         }
@@ -141,8 +150,9 @@ public class ProductDetailPage extends AppCompatActivity {
         }
         Allergy_Info.setText(allergy_Info);
         Integer[] Rid_noticeImage = {R.drawable.notice_n, R.drawable.notice_a, R.drawable.notice_n_a};
-        if(flag != 0){
-            noticeImage.setImageResource(Rid_noticeImage[flag-1]);
+        if(maxflag != 0){
+            System.out.println(maxflag);
+            noticeImage.setImageResource(Rid_noticeImage[maxflag-1]);
         }
 
 

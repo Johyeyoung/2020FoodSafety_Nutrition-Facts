@@ -1,4 +1,4 @@
-package com.example.newfacts.menu;
+package com.newfact.newfacts.menu;
 
 public class ListViewItem {
     String text;

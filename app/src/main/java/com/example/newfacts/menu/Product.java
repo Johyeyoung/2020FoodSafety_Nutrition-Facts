@@ -1,9 +1,7 @@
-package com.example.newfacts.menu;
+package com.newfact.newfacts.menu;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import com.google.firebase.database.PropertyName;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +18,7 @@ public class Product implements Parcelable{
     private String allergy;
     private String volume;
     private String key;
+
     public Product(String eng, String allergy, String category, String desc, String franchise,
                    String name, String nutrition, String pic, String volume) {
         this.franchise = franchise;
@@ -32,7 +31,9 @@ public class Product implements Parcelable{
         this.allergy = allergy;
         this.volume = volume;
     }
+
     public Product(){}
+
     public Product(String franchise, String name, String pic){
         this.franchise = franchise;
         this.name = name;
