@@ -38,9 +38,17 @@
             android:id="@+id/tabItem5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="기타" />
+            android:text="모두보기" />
 
     </com.google.android.material.tabs.TabLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="10dp"
+        android:background="#7e84a3" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"

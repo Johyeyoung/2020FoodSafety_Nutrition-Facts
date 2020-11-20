@@ -30,9 +30,26 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:text="오늘 뭐 마실까?"
-                    android:textSize="24sp" />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:lineSpacingExtra="11sp"
+                    android:textColor="#000000"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="뉴팩의 추천" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginRight="0dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#7e84a3" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/categoryRecycler"
@@ -42,16 +59,33 @@
                     android:overScrollMode="never"
                     tools:layout_editor_absoluteX="0dp"
                     tools:layout_editor_absoluteY="0dp" />
+
             </LinearLayout>
 
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="紐⑥븘蹂닿린"
-                android:textSize="24sp"/>
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:lineSpacingExtra="11sp"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                android:text="카테고리" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="10dp"
+                android:background="#7e84a3" />
 
             <LinearLayout
                 android:id="@+id/linearLayout_category"

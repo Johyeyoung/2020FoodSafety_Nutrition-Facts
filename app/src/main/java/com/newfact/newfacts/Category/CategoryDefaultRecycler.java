@@ -67,8 +67,7 @@ public class CategoryDefaultRecycler extends Fragment {
                     query = "티";
                     break;
                 case 4:
-                    query = "기타";
-                    break;
+                    query = "랜덤메뉴"; // 모든 메뉴
                 case 5:
                     break;
                 case 6:
@@ -116,7 +115,7 @@ public class CategoryDefaultRecycler extends Fragment {
                     // 조건문에 의해 필터링된 데이터가 저장됨
                     String search;
 
-                    if(message < 5){
+                    if(message < 4){
 
                         // 탭에서 사용할 데이터 : 카테고리별 호출
 
@@ -138,7 +137,7 @@ public class CategoryDefaultRecycler extends Fragment {
 
                             data.add(product);
                         }
-                    }else if(message == 6){
+                    }else if(message == 6 || message == 4){
 
                         data.add(product);
 

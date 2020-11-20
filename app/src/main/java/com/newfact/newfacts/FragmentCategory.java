@@ -49,9 +49,9 @@ public class FragmentCategory extends Fragment {
         categoryList = new ArrayList<>();
 
         // 1. 서버를 사용하지 않고 임시로 데이터 지정
-        categoryList.add(new CategoryThemeItem(R.drawable.espresso,"추천메뉴 : 바닐라라떼","당신이 좋아하는 맛"));
-        categoryList.add(new CategoryThemeItem(R.drawable.smoothe,"랜덤메뉴","뭐 먹을지 고민이라면"));
-        categoryList.add(new CategoryThemeItem(R.drawable.ade,"0 칼로리 메뉴","맛있게 먹어도 0KCAL"));
+        categoryList.add(new CategoryThemeItem(R.drawable.theme1,"추천메뉴 : 바닐라라떼","당신이 좋아하는 맛"));
+        categoryList.add(new CategoryThemeItem(R.drawable.theme2,"랜덤메뉴","뭐 먹을지 고민이라면"));
+        categoryList.add(new CategoryThemeItem(R.drawable.theme3,"0 칼로리 메뉴","맛있게 먹어도 0KCAL"));
 
         // 2.리사이클러뷰에 LinearLayoutManager 객체 지정.
 
@@ -72,8 +72,7 @@ public class FragmentCategory extends Fragment {
         catList.add(new CategoryGridMenuItem("스무디",R.drawable.smoothe));
         catList.add(new CategoryGridMenuItem("에이드",R.drawable.ade));
         catList.add(new CategoryGridMenuItem("차",R.drawable.tea));
-        catList.add(new CategoryGridMenuItem("에이드",R.drawable.ade));
-        catList.add(new CategoryGridMenuItem("기타",R.drawable.ade));
+        catList.add(new CategoryGridMenuItem("모두보기",R.drawable.all));
 
         catGridRecyclerView = view.findViewById(R.id.catGridRecycler) ;
         gridLayoutManager = new GridLayoutManager(getActivity(), 3); // 그리드 레이아웃 사용
