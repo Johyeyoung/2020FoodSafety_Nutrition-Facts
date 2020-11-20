@@ -2,8 +2,10 @@ package com.newfact.newfacts.CustomerData;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,13 +16,18 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-import com.newfact.newfacts.R;
-import com.newfact.newfacts.menu.UserInfo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.newfact.newfacts.CustomerData.CustomChoiceListViewAdapter;
+import com.newfact.newfacts.R;
+import com.newfact.newfacts.menu.UserInfo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -113,28 +120,6 @@ public class FragmentHealthInfo extends Fragment {
         for(int i=0;i<allergy.length;i++){
             adapter.addItem(allergy[i]);
         }
-//        final DatabaseReference userInfoRef = mDBReference.child("UserInfo").child(user_id);
-//        userInfoRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.child("allergy").getValue() != null) {
-//                    Log.d("firebase has data", "test");
-//                    String allergy = dataSnapshot.child("allergy").getValue().toString();
-//                    String[] user_allergy_data = allergy.split("/");
-//                    Log.d("test check allergy", dataSnapshot.child("allergy").getValue().toString());
-//                    for(int i=0;i<5;i++){
-//                        if(user_allergy_data[i].equals("1")){
-//                            listview.setItemChecked(i, true);
-//                        }
-//                    }
-//                }
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-
 
         if(userInfo.getAge()!=null){
             editTextAge.setText(userInfo.getAge());
@@ -181,44 +166,7 @@ public class FragmentHealthInfo extends Fragment {
                 }
             }
         });
-        // *** 알레르기 정보 끝
-//        userInfoRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                if(dataSnapshot.child("age").getValue()!=null){
-//                    editTextAge.setText(dataSnapshot.child("age").getValue().toString());
-//                }
-//                if(dataSnapshot.child("sex").getValue()!=null){
-//                    String tmp_sex = dataSnapshot.child("sex").getValue().toString();
-//                    if(tmp_sex == "남성"){
-//                        spinner.setSelection(0);
-//                    }
-//                    else if (tmp_sex =="여성"){
-//                        spinner.setSelection(1);
-//                    }
-//
-//
-//                }
-//                if(dataSnapshot.child("height").getValue()!=null){
-//                    editTextHeight.setText(dataSnapshot.child("height").getValue().toString());
-//                }
-//                if(dataSnapshot.child("weight").getValue()!=null){
-//                    editTextWeight.setText(dataSnapshot.child("weight").getValue().toString());
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-
-
-
-        // 이제 파이어베이스에 데이터를 저장한다
-        // 파이어베이스 코드 부분 시작
-
+        // '저장' 버튼 클릭 시 파이어베이스에 데이터를 저장한다
         buttonSaveUserInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -244,13 +192,10 @@ public class FragmentHealthInfo extends Fragment {
                     user_weight = "";
                 } else{
                     user_weight = editTextWeight.getText().toString();
-
                 }
                 // 몸무게 끝
 
                 childUpdates = new HashMap<>();
-//                userInfo = new UserInfo(user_id, user_sex, user_age, user_height, user_weight, user_allergy, user_nutrition);
-
                 user_allergy = allergyToString(user_milk_allergy)+"/"+
                         allergyToString(user_soybean_allergy)+"/"+
                         allergyToString(user_peach_allergy)+"/"+
@@ -263,14 +208,10 @@ public class FragmentHealthInfo extends Fragment {
                 mDBReference.child("/UserInfo/"+user_id).child("height").setValue(user_height);
                 mDBReference.child("/UserInfo/"+user_id).child("weight").setValue(user_weight);
                 mDBReference.child("/UserInfo/"+user_id).child("allergy").setValue(user_allergy);
-//
-//                mDBReference.updateChildren(childUpdates);
-//                childUpdates.put("/"+user_id+"/UserInfo" , userValue);
-//                mDBReference.updateChildren(childUpdates);
+                Toast.makeText(getActivity(), "저장에 성공했습니다", Toast.LENGTH_SHORT).show();
             }
         });
         // 파이어베이스 코드 부분 끝
-
         return layout;
     }
     public String allergyToString(boolean allergy){

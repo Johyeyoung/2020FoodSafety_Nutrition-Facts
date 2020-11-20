@@ -111,7 +111,7 @@ public class ProductDetailPage extends AppCompatActivity {
 
 
         int flag = 0; // 주의성분 사진용
-
+        int maxflag = 0;
         // 입력하기
         for(int i=0;i<=5; i++){
             nut_text[i] = (TextView) findViewById(Rid_Text[i]);
@@ -137,6 +137,7 @@ public class ProductDetailPage extends AppCompatActivity {
             if(allergys[i].equals("1")){
                 allergy_Info += (allergy_name[i]+ " ");
                 flag = (flag == 1)?3:2; // 2번은 알러지만, 3번은 성분/알러지
+                if(maxflag <= flag){maxflag = flag;}
             }
 
         }
@@ -149,8 +150,9 @@ public class ProductDetailPage extends AppCompatActivity {
         }
         Allergy_Info.setText(allergy_Info);
         Integer[] Rid_noticeImage = {R.drawable.notice_n, R.drawable.notice_a, R.drawable.notice_n_a};
-        if(flag != 0){
-            noticeImage.setImageResource(Rid_noticeImage[flag-1]);
+        if(maxflag != 0){
+            System.out.println(maxflag);
+            noticeImage.setImageResource(Rid_noticeImage[maxflag-1]);
         }
 
 
